@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Essência Relax Spa | Renove seu corpo e sua mente</title>
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
+    <!-- FontAwesome (Ícones) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Chart.js para o Dashboard Administrativo -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 
     <style>
@@ -76,8 +79,8 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: var(--branco); padding: 0 20px;
         }
-        #hero h1 { font-size: 4rem; margin-bottom: 20px; color: white; }
-        #hero p { font-size: 1.3rem; margin-bottom: 30px; max-width: 600px; }
+        #hero h1 { font-size: 4rem; margin-bottom: 20px; animation: fadeInDown 1s ease; color: white; }
+        #hero p { font-size: 1.3rem; margin-bottom: 30px; max-width: 600px; animation: fadeInUp 1s ease 0.3s; animation-fill-mode: both; }
 
         /* =======================================================================
            3. SEÇÕES COMUNS
@@ -112,7 +115,7 @@
         .beneficio-item:hover i { background: var(--verde-salvia); color: var(--branco); transform: rotateY(360deg); }
 
         /* =======================================================================
-           4. DEPOIMENTOS SLIDER PREMIUM
+           4. DEPOIMENTOS SLIDER PREMIUM (NOVO)
            ======================================================================= */
         #depoimentos { background-color: var(--verde-salvia); color: var(--branco); padding: 80px 5%; }
         #depoimentos .section-title { color: var(--branco); margin-bottom: 0.5rem; }
@@ -249,12 +252,8 @@
         .progress-text { text-align: right; font-size: 0.85rem; color: var(--texto-claro); font-weight: 600; margin-bottom: 30px; }
 
         /* Etapas do Formulário */
-        .form-step { display: none; }
-        .form-step.active { display: block; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .form-step { display: none; animation: fadeIn 0.5s ease; }
+        .form-step.active { display: block; }
         .step-title { font-size: 1.4rem; color: var(--texto-escuro); border-bottom: 2px solid var(--bege); padding-bottom: 10px; margin-bottom: 25px; }
 
         /* Inputs Modal */
@@ -288,14 +287,13 @@
         /* Loading e Sucesso */
         .loading-state, .success-state { text-align: center; padding: 40px 0; display: none; }
         .spinner { border: 4px solid var(--bege); border-top: 4px solid var(--verde-salvia); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .success-icon { font-size: 4rem; color: var(--verde-salvia); margin-bottom: 20px; }
         .success-booking-info { background: var(--bege); border-radius: 12px; padding: 20px; margin: 20px auto; max-width: 400px; text-align: left; }
         .success-booking-info p { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; font-size: 0.95rem; }
         .success-booking-info i { color: var(--verde-salvia); width: 20px; }
 
         /* =======================================================================
-           8. CALENDÁRIO DE AGENDAMENTO
+           8. CALENDÁRIO DE AGENDAMENTO (NOVO)
            ======================================================================= */
         .calendario-layout {
             display: grid; grid-template-columns: 1fr 1fr; gap: 25px;
@@ -386,7 +384,7 @@
         .cal-error { color: var(--erro); font-size: 0.85rem; margin-top: 12px; display: none; }
 
         /* =======================================================================
-           9. DASHBOARD ADMINISTRATIVO
+           9. DASHBOARD ADMINISTRATIVO (NOVO)
            ======================================================================= */
         #adminOverlay {
             position: fixed; inset: 0; background: #f1f5f9;
@@ -503,956 +501,281 @@
         .adm-table-wrapper { overflow-x: auto; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid #f1f5f9; }
         .adm-table { width: 100%; border-collapse: collapse; background: white; font-size: 0.875rem; }
         .adm-table thead th {
-            padding: 13px 16px; text-align: left; font-weight: 600; color: #475569; background-color: #f8fafc; border-bottom: 2px solid #e2e8f0;
+            padding: 13px 16px; text-align: left; font-weight: 600; font-size: 0.78rem;
+            color: #64748b; background: #f8fafc; border-bottom: 1px solid #e2e8f0;
+            text-transform: uppercase; letter-spacing: 0.4px; cursor: pointer; white-space: nowrap;
+            user-select: none;
         }
-        .adm-table tbody td {
-            padding: 12px 16px; border-bottom: 1px solid #f1f5f9; color: #334155;
+        .adm-table thead th:hover { background: #f1f5f9; color: #334155; }
+        .adm-table thead th.sorted-asc::after { content: ' ↑'; color: var(--verde-salvia); }
+        .adm-table thead th.sorted-desc::after { content: ' ↓'; color: var(--verde-salvia); }
+        .adm-table tbody td { padding: 13px 16px; border-bottom: 1px solid #f1f5f9; color: #334155; }
+        .adm-table tbody tr:last-child td { border-bottom: none; }
+        .adm-table tbody tr:hover { background: #f8fafc; }
+        .td-id { font-weight: 700; color: #64748b; font-size: 0.8rem; }
+        .td-cliente { font-weight: 500; color: #1e293b; }
+        .badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+        }
+        .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+        .badge-confirmado { background: #dcfce7; color: #15803d; }
+        .badge-confirmado::before { background: #22c55e; }
+        .badge-pendente { background: #fef9c3; color: #854d0e; }
+        .badge-pendente::before { background: #eab308; }
+        .badge-cancelado { background: #fee2e2; color: #991b1b; }
+        .badge-cancelado::before { background: #ef4444; }
+
+        /* Paginação */
+        .adm-pagination { display: flex; align-items: center; justify-content: between; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+        .adm-pagination-info { font-size: 0.82rem; color: #64748b; flex: 1; }
+        .adm-pagination-btns { display: flex; gap: 6px; }
+        .btn-page {
+            width: 34px; height: 34px; border-radius: 8px; border: 1px solid #e2e8f0;
+            background: white; cursor: pointer; font-size: 0.82rem; color: #475569;
+            transition: var(--transicao); display: flex; align-items: center; justify-content: center;
+        }
+        .btn-page:hover:not(:disabled) { background: #f1f5f9; border-color: #cbd5e1; }
+        .btn-page.active { background: var(--verde-salvia); color: white; border-color: var(--verde-salvia); font-weight: 600; }
+        .btn-page:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        /* Toast */
+        .adm-toast {
+            position: fixed; bottom: 30px; right: 30px; background: #1e293b; color: white;
+            padding: 14px 22px; border-radius: 12px; font-size: 0.88rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25); z-index: 99999;
+            display: flex; align-items: center; gap: 10px; transform: translateY(80px);
+            transition: transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275), opacity 0.35s ease;
+            opacity: 0; pointer-events: none; max-width: 360px;
+        }
+        .adm-toast.show { transform: translateY(0); opacity: 1; }
+        .adm-toast i { font-size: 1.1rem; }
+        .adm-toast.success i { color: #22c55e; }
+        .adm-toast.info i { color: #60a5fa; }
+        .adm-toast.warning i { color: #fbbf24; }
+
+        /* =======================================================================
+           10. ANIMAÇÕES E HELPERS
+           ======================================================================= */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp   { from { opacity: 0; transform: translateY(30px);  } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn     { from { opacity: 0; transform: translateY(10px);  } to { opacity: 1; transform: translateY(0); } }
+        @keyframes spin       { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes countUp    { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }
+
+        /* =======================================================================
+           11. RESPONSIVIDADE
+           ======================================================================= */
+        @media (max-width: 991px) {
+            #hero h1 { font-size: 3rem; }
+            #sobre { flex-direction: column; }
+            .menu-toggle { display: block; }
+            nav ul { position: absolute; top: 70px; left: -100%; width: 100%; background-color: var(--branco); flex-direction: column; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+            nav ul.active { left: 0; }
+            nav ul li { margin: 15px 0; }
+            .btn-agendar-header { display: none; }
+            .charts-grid { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .section-title { font-size: 2rem; }
+            #contato { flex-direction: column; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
+            .modal-content { padding: 25px 20px; width: 95%; }
+            .calendario-layout { grid-template-columns: 1fr; }
+            .dep-slider-wrapper { padding: 0 40px; }
+            .adm-sidebar { width: 60px; }
+            .adm-nav-item span { display: none; }
+            .adm-nav-item { justify-content: center; padding: 12px; margin: 2px 4px; }
+            .adm-sidebar-section { display: none; }
+            .adm-topbar-brand small { display: none; }
+            .kpi-grid { grid-template-columns: 1fr 1fr; }
+            .adm-export-btns .btn-export span { display: none; }
+        }
+        @media (max-width: 480px) {
+            .kpi-grid { grid-template-columns: 1fr; }
+            .horarios-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">
-            <i class="fa-solid fa-spa"></i> Essência Spa
-        </div>
+    <!-- =====================================================================
+         1. HEADER
+         ===================================================================== -->
+    <header id="header">
+        <a href="#" class="logo"><i class="fa-solid fa-leaf"></i> Essência</a>
         <nav>
-            <ul>
+            <ul id="nav-menu">
                 <li><a href="#hero">Início</a></li>
                 <li><a href="#sobre">Sobre Nós</a></li>
                 <li><a href="#servicos">Serviços</a></li>
                 <li><a href="#beneficios">Benefícios</a></li>
                 <li><a href="#depoimentos">Depoimentos</a></li>
                 <li><a href="#contato">Contato</a></li>
-                <li><button class="btn-primary" onclick="openModal()">Agendar Agora</button></li>
             </ul>
         </nav>
+        <a href="#servicos" class="btn-primary btn-agendar-header">Ver Serviços</a>
+        <div class="menu-toggle" id="mobile-menu"><i class="fa-solid fa-bars"></i></div>
     </header>
 
+    <!-- =====================================================================
+         2. HERO
+         ===================================================================== -->
     <section id="hero">
-        <h1>Renove seu corpo e mente</h1>
-        <p>Um santuário de bem-estar projetado para acalmar os seus sentidos e restaurar o seu equilíbrio interior profundo.</p>
-        <button class="btn-primary" onclick="openModal()">Vivencie essa experiência</button>
+        <h1>Renove seu corpo e sua mente.</h1>
+        <p>Descubra o equilíbrio perfeito através de massagens terapêuticas e relaxantes desenvolvidas especialmente para o seu bem-estar completo.</p>
+        <a href="#servicos" class="btn-primary" style="padding: 15px 35px; font-size: 1.1rem;">Agende Agora</a>
     </section>
 
-    <section id="sobre">
+    <!-- =====================================================================
+         3. SOBRE
+         ===================================================================== -->
+    <section id="sobre" class="reveal">
         <div class="sobre-img">
-            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Spa Ambiente">
+            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ambiente do Spa Essência">
         </div>
         <div class="sobre-text">
-            <h2>Um refúgio urbano de silêncio e harmonia</h2>
-            <p>Com anos de dedicação à arte do relaxamento total, a Essência Spa oferece terapias personalizadas inspiradas em rituais ancestrais e na ciência moderna do toque.</p>
-            <p>Nossos profissionais certificados preparam uma imersão sensorial única para purificar corpo, restaurar a energia vital e tranquilizar a mente agitada do dia a dia.</p>
+            <h2>Nossa História e Filosofia</h2>
+            <p>A <strong>Essência Relax Spa</strong> nasceu como um projeto de conclusão de curso (TCC) da disciplina de Administração, idealizado pelos estudantes <strong>João Vitor Minozzo, Milena, Maria e Alessandra</strong>. O projeto surgiu da proposta de desenvolver um empreendimento que unisse planejamento estratégico, inovação e bem-estar, transformando uma ideia acadêmica em uma experiência com propósito.</p>
+            <p>Ao longo do desenvolvimento, cada detalhe foi pensado com dedicação, criatividade e trabalho em equipe. O que começou como um desafio em sala de aula tornou-se a representação de um sonho: criar um espaço voltado ao cuidado das pessoas, oferecendo conforto, tranquilidade e momentos de equilíbrio em meio à correria do dia a dia.</p>
+            <p>Na Essência Relax Spa, acreditamos que o bem-estar vai além do relaxamento físico. Nossa filosofia é proporcionar um ambiente acolhedor, onde cada pessoa possa renovar as energias, aliviar o estresse e encontrar um verdadeiro refúgio para o corpo e a mente.</p>
             <div class="mvv">
-                <div class="mvv-item">
-                    <i class="fa-solid fa-leaf"></i>
-                    <h4>Missão</h4>
-                    <p style="font-size: 0.8rem; color: var(--texto-claro);">Conectar as pessoas ao seu estado de relaxamento integral.</p>
-                </div>
-                <div class="mvv-item">
-                    <i class="fa-solid fa-eye"></i>
-                    <h4>Visão</h4>
-                    <p style="font-size: 0.8rem; color: var(--texto-claro);">Ser referência nacional em bem-estar e rituais de spa personalizados.</p>
-                </div>
+                <div class="mvv-item"><i class="fa-solid fa-eye"></i><h4>Visão</h4><p style="font-size:0.8rem;color:#666;margin-top:5px;">Ser o principal refúgio de paz da cidade.</p></div>
+                <div class="mvv-item"><i class="fa-solid fa-bullseye"></i><h4>Missão</h4><p style="font-size:0.8rem;color:#666;margin-top:5px;">Proporcionar equilíbrio total ao corpo e mente.</p></div>
+                <div class="mvv-item"><i class="fa-solid fa-heart"></i><h4>Valores</h4><p style="font-size:0.8rem;color:#666;margin-top:5px;">Cuidado, respeito e excelência técnica.</p></div>
             </div>
         </div>
     </section>
 
-    <section id="servicos">
-        <h2 class="section-title">Nossos Tratamentos Assinados</h2>
-        <p class="section-subtitle">Reserve a terapia ideal para o seu momento de renovação</p>
+    <!-- =====================================================================
+         4. SERVIÇOS
+         ===================================================================== -->
+    <section id="servicos" class="reveal">
+        <h2 class="section-title">Nossos Serviços</h2>
+        <p class="section-subtitle">Técnicas especializadas para atender às suas necessidades únicas.</p>
         <div class="cards-container">
             <div class="card">
-                <i class="fa-solid fa-hands-holding"></i>
+                <i class="fa-solid fa-spa"></i>
+                <h3>Massagem Relaxante</h3>
+                <p>Movimentos suaves e contínuos que promovem o relaxamento profundo e aliviam a tensão diária.</p>
+                <div class="preco">R$ 120,00</div>
+                <button class="btn-primary btn-card btn-abrir-modal" data-servico="Massagem Relaxante">Agendar Sessão</button>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-hand-holding-medical"></i>
                 <h3>Massagem Terapêutica</h3>
-                <p>Combinação perfeita de pressão ideal com óleos essenciais orgânicos para liberação profunda de pontos de tensão muscular e estresse.</p>
-                <div class="preco">R$ 180,00 <span style="font-size: 0.8rem; color: var(--texto-claro);">/ 60 min</span></div>
-                <button class="btn-outline btn-card" onclick="openModal('Massagem Terapêutica')">Agendar</button>
+                <p>Foco no tratamento de dores específicas, melhorando a mobilidade e reduzindo inflamações locais.</p>
+                <div class="preco">R$ 150,00</div>
+                <button class="btn-primary btn-card btn-abrir-modal" data-servico="Massagem Terapêutica">Agendar Sessão</button>
             </div>
             <div class="card">
-                <i class="fa-solid fa-hot-tub-person"></i>
-                <h3>Ritual de Pedras Quentes</h3>
-                <p>Termoterapia relaxante profunda utilizando pedras vulcânicas polidas aquecidas para desobstrução e alinhamento dos fluxos energéticos do corpo.</p>
-                <div class="preco">R$ 240,00 <span style="font-size: 0.8rem; color: var(--texto-claro);">/ 80 min</span></div>
-                <button class="btn-outline btn-card" onclick="openModal('Ritual de Pedras Quentes')">Agendar</button>
+                <i class="fa-solid fa-droplet"></i>
+                <h3>Drenagem Linfática</h3>
+                <p>Estimula o sistema linfático, reduzindo o inchaço e auxiliando na eliminação de toxinas do corpo.</p>
+                <div class="preco">R$ 130,00</div>
+                <button class="btn-primary btn-card btn-abrir-modal" data-servico="Drenagem Linfática">Agendar Sessão</button>
             </div>
             <div class="card">
-                <i class="fa-solid fa-face-smile"></i>
-                <h3>Tratamento Facial Iluminador</h3>
-                <p>Nutrição e hidratação facial com ativos naturais e técnicas de drenagem linfática manual para recuperar o brilho saudável natural da pele.</p>
-                <div class="preco">R$ 160,00 <span style="font-size: 0.8rem; color: var(--texto-claro);">/ 50 min</span></div>
-                <button class="btn-outline btn-card" onclick="openModal('Tratamento Facial Iluminador')">Agendar</button>
+                <i class="fa-solid fa-shoe-prints"></i>
+                <h3>Reflexologia</h3>
+                <p>Terapia baseada na pressão de pontos específicos nos pés que refletem e curam órgãos internos.</p>
+                <div class="preco">R$ 110,00</div>
+                <button class="btn-primary btn-card btn-abrir-modal" data-servico="Reflexologia">Agendar Sessão</button>
             </div>
-        </div>
-    </section>
-
-    <section id="beneficios">
-        <h2 class="section-title">Por que escolher o nosso refúgio</h2>
-        <p class="section-subtitle">Benefícios que transformam de dentro para fora</p>
-        <div class="beneficios-grid">
-            <div class="beneficio-item">
-                <i class="fa-solid fa-wind"></i>
-                <h3>Ambiente Climatizado</h3>
-                <p style="color: var(--texto-claro); font-size: 0.9rem;">Salas com controle perfeito de temperatura, aroma e iluminação suave de velas.</p>
+            <div class="card">
+                <i class="fa-solid fa-person-running"></i>
+                <h3>Massagem Desportiva</h3>
+                <p>Ideal para atletas. Previne lesões, alivia a fadiga muscular e acelera a recuperação física.</p>
+                <div class="preco">R$ 160,00</div>
+                <button class="btn-primary btn-card btn-abrir-modal" data-servico="Massagem Desportiva">Agendar Sessão</button>
             </div>
-            <div class="beneficio-item">
+            <div class="card">
                 <i class="fa-solid fa-seedling"></i>
-                <h3>Produtos Orgânicos</h3>
-                <p style="color: var(--texto-claro); font-size: 0.9rem;">Utilizamos apenas cosméticos botânicos veganos e óleos 100% puros livres de aditivos químicos.</p>
-            </div>
-            <div class="beneficio-item">
-                <i class="fa-solid fa-user-doctor"></i>
-                <h3>Especialistas Dedicados</h3>
-                <p style="color: var(--texto-claro); font-size: 0.9rem;">Terapeuta dedicados a entender os pontos críticos e as necessidades exclusivas do seu corpo.</p>
+                <h3>Aromaterapia</h3>
+                <p>Combinação de massagem suave com óleos essenciais puros para harmonizar emoções e o corpo.</p>
+                <div class="preco">R$ 140,00</div>
+                <button class="btn-primary btn-card btn-abrir-modal" data-servico="Aromaterapia">Agendar Sessão</button>
             </div>
         </div>
     </section>
 
-    <section id="depoimentos">
-        <h2 class="section-title">A opinião de quem vivenciou</h2>
-        <p class="section-subtitle">Histórias reais de tranquilidade e cura espiritual</p>
-        
+    <!-- =====================================================================
+         5. BENEFÍCIOS
+         ===================================================================== -->
+    <section id="beneficios" class="reveal">
+        <h2 class="section-title">Por que escolher o Essência?</h2>
+        <p class="section-subtitle">Mais do que relaxamento — um compromisso com o seu bem-estar integral.</p>
+        <div class="beneficios-grid">
+            <div class="beneficio-item"><i class="fa-solid fa-brain"></i><h4>Redução do Estresse</h4></div>
+            <div class="beneficio-item"><i class="fa-solid fa-child-reaching"></i><h4>Alívio Muscular</h4></div>
+            <div class="beneficio-item"><i class="fa-solid fa-heart-pulse"></i><h4>Melhora da Circulação</h4></div>
+            <div class="beneficio-item"><i class="fa-solid fa-moon"></i><h4>Qualidade do Sono</h4></div>
+            <div class="beneficio-item"><i class="fa-solid fa-face-smile-beam"></i><h4>Bem-estar Emocional</h4></div>
+            <div class="beneficio-item"><i class="fa-solid fa-dumbbell"></i><h4>Recuperação Física</h4></div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         6. DEPOIMENTOS — SLIDER PREMIUM (NOVO)
+         ===================================================================== -->
+    <section id="depoimentos" class="reveal">
+        <!-- Resumo de avaliações com contador animado -->
         <div class="rating-summary">
             <div class="rating-stars-big">★★★★★</div>
-            <div class="rating-score-num">4.9 / 5.0</div>
-            <div class="rating-base-text">Baseado em mais de 1.200 avaliações de clientes satisfeitos</div>
+            <div class="rating-score-num"><span id="ratingCounter">0</span>/5</div>
+            <div class="rating-base-text">Baseado em <span id="avaliacoesCounter">0</span> avaliações</div>
         </div>
 
+        <h2 class="section-title">O que nossos clientes dizem</h2>
+        <p class="section-subtitle" style="color:rgba(255,255,255,0.8);">Experiências reais de quem já viveu o Essência.</p>
+
+        <!-- Slider -->
         <div class="dep-slider-wrapper">
-            <button class="dep-nav-btn dep-nav-prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
-            <button class="dep-nav-btn dep-nav-next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
-            
+            <button class="dep-nav-btn dep-nav-prev" id="depPrev" aria-label="Depoimento anterior">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
             <div class="dep-track-outer">
-                <div class="dep-card active">
-                    <div class="estrelas">★★★★★</div>
-                    <p class="dep-texto">"Foi uma das experiências corporais mais restauradoras que já tive na vida. O ambiente perfumado de lavanda me fez desconectar logo no hall de entrada. Recomendo fortemente a Terapia de Pedras Quentes!"</p>
-                    <div class="dep-info">
-                        <span class="dep-nome">Camila Vasconcelos</span>
-                        <span class="dep-cargo">Diretora de Arte</span>
-                        <span class="dep-servico">Ritual de Pedras Quentes</span>
-                    </div>
-                </div>
-
-                <div class="dep-card">
-                    <div class="estrelas">★★★★★</div>
-                    <p class="dep-texto">"Ambiente impecável e recepção muito acolhedora. A Massagem Terapêutica eliminou completamente o nó de tensão que eu carregava nos ombros há meses. Vale cada centavo!"</p>
-                    <div class="dep-info">
-                        <span class="dep-nome">Gustavo Siqueira</span>
-                        <span class="dep-cargo">Desenvolvedor de Software</span>
-                        <span class="dep-servico">Massagem Terapêutica</span>
-                    </div>
-                </div>
-
-                <div class="dep-card">
-                    <div class="estrelas">★★★★★</div>
-                    <p class="dep-texto">"Fiz a limpeza de pele com o Tratamento Facial e saí renovada. O cuidado e o toque suave dos profissionais são um diferencial incrível. Com certeza voltarei mensalmente!"</p>
-                    <div class="dep-info">
-                        <span class="dep-nome">Beatriz Albuquerque</span>
-                        <span class="dep-cargo">Psicóloga</span>
-                        <span class="dep-servico">Tratamento Facial Iluminador</span>
-                    </div>
-                </div>
+                <!-- Cards gerados pelo JavaScript -->
+                <div id="depTrack"></div>
             </div>
 
-            <div class="dep-dots" id="depDotsContainer">
-                <button class="dep-dot active" onclick="goToSlide(0)"></button>
-                <button class="dep-dot" onclick="goToSlide(1)"></button>
-                <button class="dep-dot" onclick="goToSlide(2)"></button>
-            </div>
-        </div>
-    </section>
-
-    <section id="galeria">
-        <h2 class="section-title">Nosso Santuário</h2>
-        <p class="section-subtitle">Dê uma olhada nos bastidores do relaxamento</p>
-        <div class="galeria-grid">
-            <div class="galeria-item">
-                <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Massagem Costas">
-            </div>
-            <div class="galeria-item">
-                <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sais de Banho">
-            </div>
-            <div class="galeria-item">
-                <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Óleo Corporal">
-            </div>
-            <div class="galeria-item">
-                <img src="https://images.unsplash.com/photo-1591343395902-1adcb454c2e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Chá de Boas Vindas">
-            </div>
-        </div>
-    </section>
-
-    <section id="contato">
-        <div class="contato-info">
-            <h2>Fale Conosco</h2>
-            <p style="color: var(--texto-claro); margin-bottom: 30px;">Agende uma visita guiada ou tire dúvidas diretamente com o nosso atendimento especializado pelo formulário.</p>
-            <div class="info-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <div>
-                    <h4>Localização</h4>
-                    <p style="color: var(--texto-claro); font-size: 0.9rem;">Av. das Bromélias, 1024 - Jardim das Flores</p>
-                </div>
-            </div>
-            <div class="info-item">
-                <i class="fa-solid fa-phone"></i>
-                <div>
-                    <h4>Telefone</h4>
-                    <p style="color: var(--texto-claro); font-size: 0.9rem;">(11) 3456-7890</p>
-                </div>
-            </div>
-            <div class="info-item">
-                <i class="fa-solid fa-envelope"></i>
-                <div>
-                    <h4>E-mail</h4>
-                    <p style="color: var(--texto-claro); font-size: 0.9rem;">contato@essenciarelaxspa.com</p>
-                </div>
-            </div>
-        </div>
-        <div class="contato-form">
-            <div class="input-group">
-                <input type="text" placeholder="Seu nome completo">
-            </div>
-            <div class="input-group">
-                <input type="email" placeholder="Seu e-mail">
-            </div>
-            <div class="input-group">
-                <textarea placeholder="Como podemos ajudar você hoje?"></textarea>
-            </div>
-            <button class="btn-primary" style="width: 100%;">Enviar Mensagem</button>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div>
-                <h3>Essência Relax Spa</h3>
-                <p style="color: #aaa; font-size: 0.9rem; margin-top: 10px; max-width: 300px;">Desacelere o seu ritmo diário e redescubra sua verdadeira essência de equilíbrio conosco.</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <span>&copy; 2026 Essência Relax Spa. Todos os direitos reservados.</span>
-            <button id="btnAdminOculto" onclick="openAdmin()"><i class="fa-solid fa-lock"></i> Acesso Administrativo</button>
-        </div>
-    </footer>
-
-    <div class="modal-overlay" id="bookingModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            
-            <div id="bookingModalForm">
-                <div class="modal-header">
-                    <h2>Seu Momento de Descanso</h2>
-                    <p>Preencha as informações para agendarmos sua sessão relaxante</p>
-                </div>
-
-                <div class="progress-container">
-                    <div class="progress-bar" id="bookingProgressBar"></div>
-                </div>
-                <div class="progress-text" id="bookingProgressText">Passo 1 de 4</div>
-
-                <div class="form-step active" data-step="1">
-                    <h3 class="step-title">1. Quem irá receber o atendimento?</h3>
-                    <div class="form-grid">
-                        <div class="form-group full-width">
-                            <label for="bName">Nome Completo</label>
-                            <input type="text" id="bName" placeholder="Digite seu nome completo">
-                        </div>
-                        <div class="form-group">
-                            <label for="bEmail">E-mail</label>
-                            <input type="email" id="bEmail" placeholder="seu-email@dominio.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="bPhone">Celular / WhatsApp</label>
-                            <input type="tel" id="bPhone" placeholder="(00) 00000-0000">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-step" data-step="2">
-                    <h3 class="step-title">2. Escolha o seu tratamento relaxante</h3>
-                    <div class="form-group">
-                        <label for="bService">Serviço Disponível</label>
-                        <select class="adm-filter-select" id="bService" style="width:100%; height:48px;" onchange="updateSelectedServiceText()">
-                            <option value="">Selecione um tratamento...</option>
-                            <option value="Massagem Terapêutica">Massagem Terapêutica (R$ 180,00)</option>
-                            <option value="Ritual de Pedras Quentes">Ritual de Pedras Quentes (R$ 240,00)</option>
-                            <option value="Tratamento Facial Iluminador">Tratamento Facial Iluminador (R$ 160,00)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Observações Clínicas ou Preferências (Opcional)</label>
-                        <textarea id="bObs" placeholder="Ex: Evitar massagem na região lombar, preferências aromáticas, etc."></textarea>
-                    </div>
-                </div>
-
-                <div class="form-step" data-step="3">
-                    <h3 class="step-title">3. Escolha a data e o horário</h3>
-                    <div class="calendario-layout">
-                        <div class="calendar-wrapper">
-                            <div class="calendar-nav">
-                                <button class="btn-cal-nav" onclick="changeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-                                <div class="cal-month-year" id="calMonthYear">Julho 2026</div>
-                                <button class="btn-cal-nav" onclick="changeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
-                            </div>
-                            <div class="calendar-grid">
-                                <div class="cal-header">Dom</div>
-                                <div class="cal-header">Seg</div>
-                                <div class="cal-header">Ter</div>
-                                <div class="cal-header">Qua</div>
-                                <div class="cal-header">Qui</div>
-                                <div class="cal-header">Sex</div>
-                                <div class="cal-header">Sáb</div>
-                            </div>
-                            <div class="calendar-grid" id="calendarDays">
-                                </div>
-                        </div>
-
-                        <div class="horarios-panel">
-                            <div class="horarios-label">Horários para <span id="selectedDateLabel">Selecione uma data</span></div>
-                            <div class="horarios-grid" id="hoursGrid">
-                                <div class="cal-placeholder">
-                                    <i class="fa-solid fa-calendar-days"></i>
-                                    <p>Clique em uma data livre para carregar os horários</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="agendamento-selecionado" id="dateTimeConfirmAlert">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <div>Agendado para: <strong id="confirmDateTimeText"></strong></div>
-                    </div>
-                    <div class="cal-error" id="calValidationError">Por favor, selecione uma data e hora para continuar.</div>
-                </div>
-
-                <div class="form-step" data-step="4">
-                    <h3 class="step-title">4. Termos e Confirmação final</h3>
-                    <div class="termos-box">
-                        <strong>Política de Cancelamento e Reagendamento:</strong>
-                        <p>Por favor, revise atentamente os termos para garantir um agendamento tranquilo em nossa clínica:</p>
-                        <ul>
-                            <li>Cancelamentos devem ser feitos com no mínimo 24h de antecedência.</li>
-                            <li>Atrasos de mais de 15 minutos reduzirão proporcionalmente o tempo de atendimento do seu ritual.</li>
-                            <li>Toda transação financeira de pagamento ocorre diretamente no local, após a sessão.</li>
-                        </ul>
-                    </div>
-                    <div class="termo-aceite">
-                        <label class="checkbox-item">
-                            <input type="checkbox" id="acceptTerms"> Estou de acordo com os termos de agendamento e cancelamento do spa.
-                        </label>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn-outline" id="btnPrevStep" onclick="navigateStep(-1)" style="display: none;">Voltar</button>
-                    <button class="btn-primary" id="btnNextStep" onclick="navigateStep(1)" style="margin-left: auto;">Continuar</button>
-                </div>
-            </div>
-
-            <div class="loading-state" id="bookingLoading">
-                <div class="spinner"></div>
-                <h3>Processando sua reserva...</h3>
-                <p>Aguarde enquanto confirmamos sua vaga em nosso sistema.</p>
-            </div>
-
-            <div class="success-state" id="bookingSuccess">
-                <i class="fa-solid fa-circle-check success-icon"></i>
-                <h2>Seu momento foi reservado!</h2>
-                <p>Um e-mail de confirmação com os detalhes de preparação já foi enviado.</p>
-                <div class="success-booking-info">
-                    <p><i class="fa-solid fa-user"></i> <span id="sName">Camila Vasconcelos</span></p>
-                    <p><i class="fa-solid fa-leaf"></i> <span id="sService">Massagem Terapêutica</span></p>
-                    <p><i class="fa-solid fa-calendar"></i> <span id="sDateTime">14/07/2026 às 14:00</span></p>
-                </div>
-                <button class="btn-primary" onclick="closeModal()" style="width: 100%;">Excelente, obrigado!</button>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="adminOverlay">
-        <div class="adm-topbar">
-            <div class="adm-topbar-brand">
-                <div class="brand-dot"></div>
-                <span>Essência Relax Spa</span>
-                <small>Gestão de Negócios</small>
-            </div>
-            <button class="adm-close-btn" onclick="closeAdmin()">
-                <i class="fa-solid fa-right-from-bracket"></i> Sair do Painel
+            <button class="dep-nav-btn dep-nav-next" id="depNext" aria-label="Próximo depoimento">
+                <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
 
-        <div class="adm-body">
-            <aside class="adm-sidebar">
-                <div class="adm-sidebar-section">Navegação</div>
-                <button class="adm-nav-item active" onclick="switchTab('tabDashboard', this)"><i class="fa-solid fa-chart-pie"></i> Painel Geral</button>
-                <button class="adm-nav-item" onclick="switchTab('tabAgendamentos', this)"><i class="fa-solid fa-calendar-check"></i> Agendamentos</button>
-            </aside>
+        <!-- Indicadores (dots) -->
+        <div class="dep-dots" id="depDots"></div>
+    </section>
 
-            <main class="adm-main">
-                <div class="adm-tab active" id="tabDashboard">
-                    <div class="adm-section-title">Indicadores de Desempenho (Mensal)</div>
-                    <div class="kpi-grid">
-                        <div class="kpi-card">
-                            <div class="kpi-card-header">
-                                <span class="kpi-card-label">Agendamentos</span>
-                                <div class="kpi-icon verde"><i class="fa-solid fa-calendar-days"></i></div>
-                            </div>
-                            <div class="kpi-value" id="kpiReservas">124</div>
-                            <div class="kpi-change">+14% vs. mês anterior</div>
-                        </div>
-                        <div class="kpi-card">
-                            <div class="kpi-card-header">
-                                <span class="kpi-card-label">Faturamento</span>
-                                <div class="kpi-icon azul"><i class="fa-solid fa-dollar-sign"></i></div>
-                            </div>
-                            <div class="kpi-value">R$ 22.320</div>
-                            <div class="kpi-change" style="color: #22c55e;">+8.3% vs. mês anterior</div>
-                        </div>
-                        <div class="kpi-card">
-                            <div class="kpi-card-header">
-                                <span class="kpi-card-label">Taxa de Presença</span>
-                                <div class="kpi-icon roxo"><i class="fa-solid fa-user-check"></i></div>
-                            </div>
-                            <div class="kpi-value">96.8%</div>
-                            <div class="kpi-change">+1.2% este mês</div>
-                        </div>
-                        <div class="kpi-card">
-                            <div class="kpi-card-header">
-                                <span class="kpi-card-label">Tempo Médio</span>
-                                <div class="kpi-icon laranja"><i class="fa-solid fa-hourglass-half"></i></div>
-                            </div>
-                            <div class="kpi-value">65 min</div>
-                            <div class="kpi-change" style="color: #64748b;">Média por terapia</div>
-                        </div>
-                    </div>
-
-                    <div class="charts-grid">
-                        <div class="chart-card">
-                            <div class="chart-card-title">Distribuição de Terapias Reservadas</div>
-                            <div class="chart-canvas-wrapper" style="height: 250px;">
-                                <canvas id="chartTerapias"></canvas>
-                            </div>
-                        </div>
-                        <div class="chart-card">
-                            <div class="chart-card-title">Faturamento Mensal Estimado</div>
-                            <div class="chart-canvas-wrapper" style="height: 250px;">
-                                <canvas id="chartFaturamento"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="adm-tab" id="tabAgendamentos">
-                    <div class="adm-section-title">Controle de Reservas Recentes</div>
-                    
-                    <div class="adm-table-controls">
-                        <input type="text" class="adm-search" id="admSearchInput" placeholder="Procurar por nome do cliente ou serviço..." onkeyup="filterReservationsTable()">
-                        <select class="adm-filter-select" id="admFilterService" onchange="filterReservationsTable()">
-                            <option value="">Todos os Tratamentos</option>
-                            <option value="Massagem Terapêutica">Massagem Terapêutica</option>
-                            <option value="Ritual de Pedras Quentes">Ritual de Pedras Quentes</option>
-                            <option value="Tratamento Facial Iluminador">Tratamento Facial Iluminador</option>
-                        </select>
-                        <div class="adm-export-btns">
-                            <button class="btn-export pdf" onclick="alert('Exportando em PDF...')"><i class="fa-solid fa-file-pdf"></i> PDF</button>
-                            <button class="btn-export excel" onclick="alert('Exportando em Excel...')"><i class="fa-solid fa-file-excel"></i> Excel</button>
-                        </div>
-                    </div>
-
-                    <div class="adm-table-wrapper">
-                        <table class="adm-table">
-                            <thead>
-                                <tr>
-                                    <th>Cliente</th>
-                                    <th>Contato</th>
-                                    <th>Serviço Solicitado</th>
-                                    <th>Data e Hora</th>
-                                    <th>Valor</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="reservationsTableBody">
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
-            </main>
+    <!-- =====================================================================
+         7. GALERIA
+         ===================================================================== -->
+    <section id="galeria" class="reveal">
+        <h2 class="section-title">Nossa Galeria</h2>
+        <p class="section-subtitle">Um espaço pensado em cada detalhe para o seu conforto.</p>
+        <div class="galeria-grid">
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=600&q=80" alt="Sala de massagem"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80" alt="Ambiente relaxante"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80" alt="Sessão terapêutica"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Aromaterapia"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1596178060810-72f53ce9a65c?auto=format&fit=crop&w=600&q=80" alt="Espaço zen"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=600&q=80" alt="Cuidado corporal"></div>
         </div>
-    </div>
-
-    <script>
-        /* =======================================================================
-           I. CONTROLE DO SLIDER DE DEPOIMENTOS
-           ======================================================================= */
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.dep-card');
-        const dots = document.querySelectorAll('.dep-dot');
-
-        function updateSlideDisplay() {
-            slides.forEach((slide, idx) => {
-                slide.classList.remove('active');
-                if (idx === currentSlide) slide.classList.add('active');
-            });
-            dots.forEach((dot, idx) => {
-                dot.classList.remove('active');
-                if (idx === currentSlide) dot.classList.add('active');
-            });
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide === 0) ? slides.length - 1 : currentSlide - 1;
-            updateSlideDisplay();
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide === slides.length - 1) ? 0 : currentSlide + 1;
-            updateSlideDisplay();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateSlideDisplay();
-        }
-
-        // Auto-Play Depoimentos (A cada 6 segundos)
-        setInterval(nextSlide, 6000);
-
-
-        /* =======================================================================
-           II. AGENDAMENTOS BANCO DE DADOS LOCAL (SIMULADO)
-           ======================================================================= */
-        let dbAgendamentos = [
-            { id: 1, nome: "Juliana Mendes", email: "ju.mendes@uol.com", fone: "(11) 98877-6655", servico: "Massagem Terapêutica", dataHora: "14/07/2026 às 14:00", valor: "R$ 180,00" },
-            { id: 2, nome: "Marcos Aurelio", email: "marquinhos.a@gmail.com", fone: "(11) 97722-1133", servico: "Ritual de Pedras Quentes", dataHora: "15/07/2026 às 10:00", valor: "R$ 240,00" },
-            { id: 3, nome: "Mariana Souza", email: "mari.souza@outlook.com", fone: "(11) 96655-4422", servico: "Tratamento Facial Iluminador", dataHora: "15/07/2026 às 16:30", valor: "R$ 160,00" },
-            { id: 4, nome: "Roberto Costa", email: "robertocosta@empresa.com", fone: "(11) 95533-8877", servico: "Massagem Terapêutica", dataHora: "16/07/2026 às 11:30", valor: "R$ 180,00" }
-        ];
-
-        // Carregar agendamentos na tabela do admin
-        function loadReservationsTable() {
-            const tableBody = document.getElementById('reservationsTableBody');
-            tableBody.innerHTML = '';
-            
-            dbAgendamentos.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td><strong>${item.nome}</strong></td>
-                    <td><span style="font-size:0.8rem; color:#64748b;">${item.fone}<br>${item.email}</span></td>
-                    <td><span style="background:#f0fdf4; color:#16a34a; font-weight:500; font-size:0.78rem; padding:4px 10px; border-radius:20px;">${item.servico}</span></td>
-                    <td><strong>${item.dataHora}</strong></td>
-                    <td><strong>${item.valor}</strong></td>
-                    <td>
-                        <button class="adm-close-btn" style="padding:4px 8px; font-size:0.75rem;" onclick="cancelBooking(${item.id})">
-                            <i class="fa-solid fa-trash-can"></i> Cancelar
-                        </button>
-                    </td>
-                `;
-                tableBody.appendChild(tr);
-            });
-
-            // Atualiza o KPI de agendamentos no Dashboard
-            document.getElementById('kpiReservas').innerText = dbAgendamentos.length + 120; // 120 estáticos + novos virtuais
-        }
-
-        function cancelBooking(id) {
-            if (confirm("Tem certeza de que deseja cancelar este agendamento?")) {
-                dbAgendamentos = dbAgendamentos.filter(item => item.id !== id);
-                loadReservationsTable();
-                updateCharts();
-            }
-        }
-
-
-        /* =======================================================================
-           III. CALENDÁRIO INTERATIVO NO MODAL
-           ======================================================================= */
-        let currentDate = new Date(2026, 6, 13); // Julho 13, 2026
-        let calendarSelectedDay = null;
-        let calendarSelectedHour = null;
-
-        const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-        const slotsHorarios = ["09:00", "10:30", "11:30", "14:00", "15:30", "16:30", "18:00"];
-
-        function changeMonth(dir) {
-            currentDate.setMonth(currentDate.getMonth() + dir);
-            renderCalendar();
-            // Resetar seleções de hora ao trocar de mês
-            clearDateTimeSelection();
-        }
-
-        function renderCalendar() {
-            const year = currentDate.getFullYear();
-            const month = currentDate.getMonth();
-
-            document.getElementById('calMonthYear').innerText = `${meses[month]} ${year}`;
-
-            const firstDayIndex = new Date(year, month, 1).getDay();
-            const totalDays = new Date(year, month + 1, 0).getDate();
-
-            const daysContainer = document.getElementById('calendarDays');
-            daysContainer.innerHTML = '';
-
-            // Espaços vazios do início do mês
-            for (let i = 0; i < firstDayIndex; i++) {
-                const emptyDiv = document.createElement('div');
-                emptyDiv.classList.add('cal-day', 'cal-empty');
-                daysContainer.appendChild(emptyDiv);
-            }
-
-            // Geração dos dias reais
-            for (let day = 1; day <= totalDays; day++) {
-                const dayDiv = document.createElement('div');
-                dayDiv.classList.add('cal-day');
-                dayDiv.innerText = day;
-
-                // Bloquear dias passados no calendário realístico de 2026
-                const loopDate = new Date(year, month, day);
-                const hoje = new Date(2026, 6, 13); // 13 de Julho de 2026
-
-                if (loopDate < hoje) {
-                    dayDiv.classList.add('cal-past');
-                } else {
-                    // Dia de Hoje destacado
-                    if (day === 13 && month === 6 && year === 2026) {
-                        dayDiv.classList.add('cal-today');
-                    }
-                    
-                    // Verificação se está selecionado
-                    if (calendarSelectedDay && calendarSelectedDay.day === day && calendarSelectedDay.month === month && calendarSelectedDay.year === year) {
-                        dayDiv.classList.add('cal-selected');
-                    }
-
-                    // Ação de Clique
-                    dayDiv.addEventListener('click', () => {
-                        selectCalendarDay(day, month, year);
-                    });
-                }
-                daysContainer.appendChild(dayDiv);
-            }
-        }
-
-        function selectCalendarDay(day, month, year) {
-            calendarSelectedDay = { day, month, year };
-            calendarSelectedHour = null; // reset hora ao trocar dia
-            document.getElementById('dateTimeConfirmAlert').style.display = 'none';
-
-            renderCalendar();
-            renderHoursPanel(day, month, year);
-        }
-
-        function renderHoursPanel(day, month, year) {
-            const label = document.getElementById('selectedDateLabel');
-            const dataFormatada = `${String(day).padStart(2, '0')}/${String(month + 1).padStart(2, '0')}/${year}`;
-            label.innerHTML = `<span>${dataFormatada}</span>`;
-
-            const grid = document.getElementById('hoursGrid');
-            grid.innerHTML = '';
-
-            slotsHorarios.forEach((hora, idx) => {
-                const slot = document.createElement('div');
-                slot.classList.add('horario-slot');
-                slot.innerText = hora;
-
-                // Simulação de horário ocupado (ex: slots ímpares no dia de hoje estão ocupados)
-                const isOcupado = (day % 2 === 0 && idx % 3 === 0) || (day % 3 === 0 && idx === 1);
-                
-                if (isOcupado) {
-                    slot.classList.add('ocupado');
-                    slot.innerText += ' (Indisponível)';
-                } else {
-                    if (calendarSelectedHour === hora) {
-                        slot.classList.add('selecionado');
-                    }
-                    slot.addEventListener('click', () => {
-                        selectCalendarHour(hora, slot);
-                    });
-                }
-                grid.appendChild(slot);
-            });
-        }
-
-        function selectCalendarHour(hora, slotElement) {
-            document.querySelectorAll('.horario-slot').forEach(el => el.classList.remove('selecionado'));
-            slotElement.classList.add('selecionado');
-            calendarSelectedHour = hora;
-
-            const d = calendarSelectedDay;
-            const dataFormatada = `${String(d.day).padStart(2, '0')}/${String(d.month + 1).padStart(2, '0')}/${d.year}`;
-            
-            document.getElementById('dateTimeConfirmAlert').style.display = 'flex';
-            document.getElementById('confirmDateTimeText').innerText = `${dataFormatada} às ${hora}`;
-            document.getElementById('calValidationError').style.display = 'none';
-        }
-
-        function clearDateTimeSelection() {
-            calendarSelectedDay = null;
-            calendarSelectedHour = null;
-            document.getElementById('dateTimeConfirmAlert').style.display = 'none';
-            document.getElementById('selectedDateLabel').innerText = "Selecione uma data";
-            document.getElementById('hoursGrid').innerHTML = `
-                <div class="cal-placeholder">
-                    <i class="fa-solid fa-calendar-days"></i>
-                    <p>Clique em uma data livre para carregar os horários</p>
-                </div>
-            `;
-        }
-
-
-        /* =======================================================================
-           IV. MODAL FLUXO EM 4 ETAPAS
-           ======================================================================= */
-        let currentStep = 1;
-
-        function openModal(serviceName = '') {
-            document.getElementById('bookingModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            // Resetar formulário ao abrir
-            currentStep = 1;
-            document.getElementById('bookingModalForm').style.display = 'block';
-            document.getElementById('bookingLoading').style.display = 'none';
-            document.getElementById('bookingSuccess').style.display = 'none';
-            
-            // Reseta inputs de contato
-            document.getElementById('bName').value = '';
-            document.getElementById('bEmail').value = '';
-            document.getElementById('bPhone').value = '';
-            document.getElementById('bObs').value = '';
-            document.getElementById('acceptTerms').checked = false;
-            
-            if (serviceName) {
-                document.getElementById('bService').value = serviceName;
-            } else {
-                document.getElementById('bService').value = '';
-            }
-
-            clearDateTimeSelection();
-            showStep(1);
-            renderCalendar();
-        }
-
-        function closeModal() {
-            document.getElementById('bookingModal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function showStep(step) {
-            document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
-            document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
-
-            // Atualiza progresso visual
-            const pct = (step / 4) * 100;
-            document.getElementById('bookingProgressBar').style.width = `${pct}%`;
-            document.getElementById('bookingProgressText').innerText = `Passo ${step} de 4`;
-
-            // Navegação de botões
-            document.getElementById('btnPrevStep').style.display = (step === 1) ? 'none' : 'block';
-            document.getElementById('btnNextStep').innerText = (step === 4) ? 'Finalizar Reserva' : 'Continuar';
-        }
-
-        function navigateStep(dir) {
-            if (dir === 1 && !validateCurrentStep()) {
-                return; // Impede avançar sem validação de dados
-            }
-
-            currentStep += dir;
-
-            if (currentStep > 4) {
-                processBookingSubmission();
-            } else {
-                showStep(currentStep);
-            }
-        }
-
-        function validateCurrentStep() {
-            let isValid = true;
-            
-            if (currentStep === 1) {
-                const name = document.getElementById('bName');
-                const email = document.getElementById('bEmail');
-                const phone = document.getElementById('bPhone');
-
-                if (!name.value.trim()) { name.classList.add('input-error'); isValid = false; } else { name.classList.remove('input-error'); }
-                if (!email.value.trim() || !email.value.includes('@')) { email.classList.add('input-error'); isValid = false; } else { email.classList.remove('input-error'); }
-                if (!phone.value.trim()) { phone.classList.add('input-error'); isValid = false; } else { phone.classList.remove('input-error'); }
-            }
-            
-            if (currentStep === 2) {
-                const service = document.getElementById('bService');
-                if (!service.value) { service.classList.add('input-error'); isValid = false; } else { service.classList.remove('input-error'); }
-            }
-
-            if (currentStep === 3) {
-                if (!calendarSelectedDay || !calendarSelectedHour) {
-                    document.getElementById('calValidationError').style.display = 'block';
-                    isValid = false;
-                } else {
-                    document.getElementById('calValidationError').style.display = 'none';
-                }
-            }
-
-            if (currentStep === 4) {
-                const terms = document.getElementById('acceptTerms');
-                if (!terms.checked) {
-                    alert("Você precisa aceitar os termos do spa para prosseguir.");
-                    isValid = false;
-                }
-            }
-
-            return isValid;
-        }
-
-        // Simula o carregamento e finalização do agendamento
-        function processBookingSubmission() {
-            document.getElementById('bookingModalForm').style.display = 'none';
-            document.getElementById('bookingLoading').style.display = 'block';
-
-            setTimeout(() => {
-                document.getElementById('bookingLoading').style.display = 'none';
-                document.getElementById('bookingSuccess').style.display = 'block';
-
-                // Captura os dados inseridos
-                const nome = document.getElementById('bName').value;
-                const servico = document.getElementById('bService').value;
-                const d = calendarSelectedDay;
-                const dataFormatada = `${String(d.day).padStart(2, '0')}/${String(d.month + 1).padStart(2, '0')}/${d.year} às ${calendarSelectedHour}`;
-
-                // Popula tela de sucesso
-                document.getElementById('sName').innerText = nome;
-                document.getElementById('sService').innerText = servico;
-                document.getElementById('sDateTime').innerText = dataFormatada;
-
-                // Adiciona ao banco de dados administrativo simulado
-                const novoAgendamento = {
-                    id: dbAgendamentos.length + 1,
-                    nome: nome,
-                    email: document.getElementById('bEmail').value,
-                    fone: document.getElementById('bPhone').value,
-                    servico: servico,
-                    dataHora: dataFormatada,
-                    valor: servico.includes('Terapêutica') ? 'R$ 180,00' : servico.includes('Pedras') ? 'R$ 240,00' : 'R$ 160,00'
-                };
-                dbAgendamentos.unshift(novoAgendamento); // coloca no topo da tabela
-                loadReservationsTable();
-                updateCharts();
-            }, 2000);
-        }
-
-
-        /* =======================================================================
-           V. DASHBOARD ADMINISTRATIVO E CHART.JS
-           ======================================================================= */
-        let chartT = null;
-        let chartF = null;
-
-        function openAdmin() {
-            const senha = prompt("Acesso Restrito do Painel. Digite a senha administrativa (Dica: admin):");
-            if (senha === "admin") {
-                document.getElementById('adminOverlay').classList.add('active');
-                loadReservationsTable();
-                initCharts();
-            } else if (senha !== null) {
-                alert("Senha administrativa incorreta!");
-            }
-        }
-
-        function closeAdmin() {
-            document.getElementById('adminOverlay').classList.remove('active');
-        }
-
-        function switchTab(tabId, btn) {
-            document.querySelectorAll('.adm-tab').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.adm-nav-item').forEach(el => el.classList.remove('active'));
-            
-            document.getElementById(tabId).classList.add('active');
-            btn.classList.add('active');
-        }
-
-        function filterReservationsTable() {
-            const searchVal = document.getElementById('admSearchInput').value.toLowerCase();
-            const serviceFilter = document.getElementById('admFilterService').value;
-            const rows = document.querySelectorAll('#reservationsTableBody tr');
-
-            rows.forEach(row => {
-                const text = row.innerText.toLowerCase();
-                const matchesSearch = text.includes(searchVal);
-                const matchesService = serviceFilter === "" || text.includes(serviceFilter.toLowerCase());
-
-                if (matchesSearch && matchesService) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-
-        function initCharts() {
-            // Destrói os gráficos antigos antes de criá-los de novo para evitar bugs de hover do Canvas
-            if (chartT) chartT.destroy();
-            if (chartF) chartF.destroy();
-
-            // 1. Gráfico de Rosca de Serviços Solicitados
-            const ctxT = document.getElementById('chartTerapias').getContext('2d');
-            chartT = new Chart(ctxT, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Massagem Terapêutica', 'Pedras Quentes', 'Tratamento Facial'],
-                    datasets: [{
-                        data: [42, 28, 30],
-                        backgroundColor: ['#9eb5a3', '#b8d4e3', '#edd8c4'],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'bottom' }
-                    }
-                }
-            });
-
-            // 2. Gráfico de Linha de Faturamento
-            const ctxF = document.getElementById('chartFaturamento').getContext('2d');
-            chartF = new Chart(ctxF, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul (Estimado)'],
-                    datasets: [{
-                        label: 'Faturamento em R$',
-                        data: [15000, 16800, 18200, 16500, 19400, 21000, 22320],
-                        borderColor: '#9eb5a3',
-                        backgroundColor: 'rgba(158,181,163,0.1)',
-                        fill: true,
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: { beginAtZero: true }
-                    }
-                }
-            });
-        }
-
-        function updateCharts() {
-            if (chartT && chartF) {
-                // Conta dinamicamente as categorias baseadas no dbAgendamentos local
-                let massagem = 40, pedras = 25, facial = 28;
-                dbAgendamentos.forEach(item => {
-                    if (item.servico.includes("Massagem")) massagem++;
-                    else if (item.servico.includes("Pedras")) pedras++;
-                    else if (item.servico.includes("Facial")) facial++;
-                });
-
-                chartT.data.datasets[0].data = [massagem, pedras, facial];
-                chartT.update();
-            }
-        }
-    </script>
-</body>
-</html>
+    </section>
+
+    <!-- =====================================================================
+         8. CONTATO
+         ===================================================================== -->
+    <section id="contato" class="reveal">
+        <div class="contato-info">
+            <h2 style="color:var(--verde-salvia);margin-bottom:20px;">Fale Conosco</h2>
+            <p style="color:var(--texto-claro);margin-bottom:30px;">Estamos prontos para atender você. Entre em contato ou visite nosso espaço.</p>
+            <div class="info-item"><i class="fa-solid fa-location-dot"></i><div><strong>Endereço</strong><p>Rua das Flores, 1200 — Centro, Matelândia/PR</p></div></div>
+            <div class="info-item"><i class="fa-brands fa-whatsapp"></i><div><strong>WhatsApp</strong><p>+55 (45) 9986-7857</p></div></div>
+            <div class="info-item"><i class="fa-solid fa-clock"></i><div><strong>Horário</strong><p>Seg–Sáb: 9h às 19h | Dom:... (70 KB restante(s))
