@@ -176,27 +176,11 @@
         /* =======================================================================
            5. GALERIA
            ======================================================================= */
-        <div class="galeria-grid">
-    <!-- Imagem 1 -->
-    <div class="galeria-item">
-        <img src="LINK_DA_IMAGEM_1_AQUI" alt="Descrição da imagem 1">
-    </div>
-
-    <!-- Imagem 2 -->
-    <div class="galeria-item">
-        <img src="https://share.google/fJ6A9rG0xcLXUbfYy" alt="Descrição da imagem 2">
-    </div>
-
-    <!-- Imagem 3 -->
-    <div class="galeria-item">
-        <img src="https://share.google/TyWOwqwM5OtCz7QqG" alt="Descrição da imagem 3">
-    </div>
-
-    <!-- Imagem 4 -->
-    <div class="galeria-item">
-        <img src="https://share.google/b7ODXSl6wZMCRBpdr" alt="Descrição da imagem 4">
-    </div>
-</div>
+        #galeria { background-color: var(--bege); }
+        .galeria-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .galeria-item { border-radius: 10px; overflow: hidden; height: 250px; }
+        .galeria-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transicao); }
+        .galeria-item:hover img { transform: scale(1.1); }
 
         /* =======================================================================
            6. CONTATO E FOOTER
