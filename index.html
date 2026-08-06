@@ -118,7 +118,6 @@
         #depoimentos .section-title { color: var(--branco); margin-bottom: 0.5rem; }
         #depoimentos .section-subtitle { color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
 
-        /* Resumo de avaliações */
         .rating-summary {
             text-align: center; margin-bottom: 40px;
             display: flex; flex-direction: column; align-items: center; gap: 6px;
@@ -127,11 +126,9 @@
         .rating-score-num { font-size: 1.4rem; font-weight: 700; color: #fff; }
         .rating-base-text { font-size: 0.9rem; color: rgba(255,255,255,0.75); }
 
-        /* Slider wrapper */
         .dep-slider-wrapper {
             position: relative; max-width: 750px; margin: 0 auto; padding: 0 50px;
         }
-        /* Botões nav */
         .dep-nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
             width: 44px; height: 44px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.6);
@@ -143,7 +140,6 @@
         .dep-nav-prev { left: 0; }
         .dep-nav-next { right: 0; }
 
-        /* Track e slide */
         .dep-track-outer { overflow: hidden; border-radius: 18px; }
         .dep-card {
             display: none;
@@ -170,7 +166,6 @@
             background: rgba(255,255,255,0.2); color: white; padding: 3px 12px; border-radius: 20px;
         }
 
-        /* Dots indicadores */
         .dep-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; }
         .dep-dot {
             width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.35);
@@ -207,7 +202,6 @@
         .footer-content { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-bottom: 40px; text-align: center; }
         .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; color: #aaa; display: flex; justify-content: center; align-items: center; gap: 12px; }
 
-        /* Botão admin oculto no rodapé */
         #btnAdminOculto {
             background: none; border: none; cursor: pointer;
             color: #555; font-size: 0.8rem; letter-spacing: 1px;
@@ -243,12 +237,10 @@
         .modal-header h2 { color: var(--verde-salvia); font-size: 2.2rem; }
         .modal-header p { color: var(--texto-claro); font-size: 0.95rem; }
 
-        /* Barra de Progresso */
         .progress-container { width: 100%; background: var(--bege); border-radius: 10px; height: 8px; margin-bottom: 10px; overflow: hidden; }
         .progress-bar { height: 100%; background: linear-gradient(90deg, var(--verde-salvia-hover), var(--verde-salvia)); width: 25%; border-radius: 10px; transition: width 0.5s ease; }
         .progress-text { text-align: right; font-size: 0.85rem; color: var(--texto-claro); font-weight: 600; margin-bottom: 30px; }
 
-        /* Etapas do Formulário */
         .form-step { display: none; }
         .form-step.active { display: block; animation: fadeIn 0.5s ease; }
         @keyframes fadeIn {
@@ -257,7 +249,6 @@
         }
         .step-title { font-size: 1.4rem; color: var(--texto-escuro); border-bottom: 2px solid var(--bege); padding-bottom: 10px; margin-bottom: 25px; }
 
-        /* Inputs Modal */
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .form-group { margin-bottom: 20px; }
         .form-group.full-width { grid-column: span 2; }
@@ -275,17 +266,14 @@
         .radio-item, .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; cursor: pointer; }
         input[type="radio"], input[type="checkbox"] { accent-color: var(--verde-salvia); width: 18px; height: 18px; cursor: pointer; }
 
-        /* Termos */
         .termos-box { background-color: var(--bege); border: 1px solid var(--borda-suave); padding: 20px; border-radius: 10px; font-size: 0.85rem; color: var(--texto-claro); margin-bottom: 20px; line-height: 1.7; }
         .termos-box ul { list-style: disc; padding-left: 20px; margin-top: 10px; }
         .termo-aceite { background-color: rgba(158,181,163,0.1); padding: 15px; border-radius: 8px; border: 1px solid var(--verde-salvia); font-weight: 500; color: var(--texto-escuro); }
 
-        /* Navegação Modal */
         .modal-footer { display: flex; justify-content: space-between; margin-top: 30px; border-top: 1px solid var(--borda-suave); padding-top: 20px; }
         .error-message { color: var(--erro); font-size: 0.85rem; margin-top: 5px; display: none; }
         .input-error { border-color: var(--erro) !important; background-color: #fff8f8 !important; }
 
-        /* Loading e Sucesso */
         .loading-state, .success-state { text-align: center; padding: 40px 0; display: none; }
         .spinner { border: 4px solid var(--bege); border-top: 4px solid var(--verde-salvia); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -333,7 +321,6 @@
         }
         .cal-day.cal-selected.cal-has-events::after { background: rgba(255,255,255,0.7); }
 
-        /* Horários */
         .horarios-panel { display: flex; flex-direction: column; }
         .horarios-label {
             font-weight: 600; font-size: 0.92rem; margin-bottom: 12px; color: var(--texto-escuro);
@@ -354,7 +341,6 @@
             background: #f5f5f5; color: #c0c0c0; cursor: not-allowed;
             border-color: #e8e8e8; font-size: 0.82rem;
         }
-        /* Tooltip horário ocupado */
         .horario-slot.ocupado::after {
             content: 'Horário indisponível'; position: absolute; bottom: calc(100% + 8px);
             left: 50%; transform: translateX(-50%); background: #333; color: white;
@@ -368,14 +354,12 @@
         .horario-slot.ocupado:hover::after,
         .horario-slot.ocupado:hover::before { opacity: 1; }
 
-        /* Aviso aguardando seleção */
         .cal-placeholder {
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             height: 100%; gap: 12px; color: var(--texto-claro); text-align: center; padding: 20px;
         }
         .cal-placeholder i { font-size: 2.5rem; color: var(--borda-suave); }
 
-        /* Resumo de agendamento no formulário */
         .agendamento-selecionado {
             background: rgba(158,181,163,0.12); border: 1px solid var(--verde-salvia);
             border-radius: 10px; padding: 14px 18px; margin-top: 16px;
@@ -395,7 +379,6 @@
         }
         #adminOverlay.active { opacity: 1; visibility: visible; }
 
-        /* Header do admin */
         .adm-topbar {
             background: white; padding: 0 24px; height: 60px; display: flex;
             align-items: center; justify-content: space-between;
@@ -413,10 +396,8 @@
         }
         .adm-close-btn:hover { background: #fee2e2; border-color: #fca5a5; color: #dc2626; }
 
-        /* Layout principal */
         .adm-body { display: flex; flex: 1; overflow: hidden; }
 
-        /* Sidebar */
         .adm-sidebar {
             width: 220px; background: #1e293b; flex-shrink: 0;
             display: flex; flex-direction: column; overflow-y: auto;
@@ -432,14 +413,11 @@
         .adm-nav-item.active { background: rgba(158,181,163,0.2); color: #9eb5a3; font-weight: 600; }
         .adm-nav-item i { width: 18px; text-align: center; font-size: 0.95rem; }
 
-        /* Área de conteúdo */
         .adm-main { flex: 1; overflow-y: auto; padding: 28px 28px; }
 
-        /* Abas */
         .adm-tab { display: none; }
         .adm-tab.active { display: block; }
 
-        /* KPI Cards */
         .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 28px; }
         .kpi-card {
             background: white; border-radius: 14px; padding: 20px;
@@ -458,44 +436,8 @@
         .kpi-value { font-size: 1.8rem; font-weight: 700; color: #1e293b; font-family: 'Poppins', sans-serif; line-height: 1; }
         .kpi-change { font-size: 0.75rem; color: #22c55e; margin-top: 6px; font-weight: 500; }
 
-        /* Seções do dashboard */
         .adm-section-title { font-size: 1rem; font-weight: 600; color: #1e293b; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; font-family: 'Poppins', sans-serif; }
         .adm-section-title::before { content: ''; width: 4px; height: 18px; background: var(--verde-salvia); border-radius: 2px; }
-
-        /* Grid de gráficos */
-        .charts-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; margin-bottom: 28px; }
-        .chart-card {
-            background: white; border-radius: 14px; padding: 22px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid #f1f5f9;
-        }
-        .chart-card-title { font-size: 0.85rem; font-weight: 600; color: #475569; margin-bottom: 16px; font-family: 'Poppins', sans-serif; }
-        .chart-canvas-wrapper { position: relative; }
-
-        /* Gráfico de faturamento */
-        .chart-full { background: white; border-radius: 14px; padding: 22px; margin-bottom: 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid #f1f5f9; }
-
-        /* Tabela admin */
-        .adm-table-controls { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
-        .adm-search {
-            flex: 1; min-width: 200px; padding: 9px 14px 9px 36px; border: 1px solid #e2e8f0;
-            border-radius: 8px; font-size: 0.875rem; outline: none; background: white;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
-            background-repeat: no-repeat; background-position: 12px center; transition: var(--transicao);
-        }
-        .adm-search:focus { border-color: var(--verde-salvia); box-shadow: 0 0 0 3px rgba(158,181,163,0.15); }
-        .adm-filter-select {
-            padding: 9px 14px; border: 1px solid #e2e8f0; border-radius: 8px;
-            font-size: 0.875rem; outline: none; background: white; cursor: pointer; color: #475569;
-        }
-        .adm-filter-select:focus { border-color: var(--verde-salvia); }
-        .adm-export-btns { display: flex; gap: 8px; margin-left: auto; }
-        .btn-export {
-            padding: 8px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 500;
-            cursor: pointer; transition: var(--transicao); display: flex; align-items: center; gap: 6px;
-            border: 1px solid;
-        }
-        .btn-export.pdf   { background: #fef2f2; color: #dc2626; border-color: #fca5a5; }
-        .btn-export.excel { background: #f0fdf4; color: #16a34a; border-color: #86efac; }
     </style>
 </head>
 <body>
@@ -661,15 +603,15 @@
         </div>
     </section>
 
-    <!-- Galeria -->
+    <!-- Galeria (Imagens Corrigidas) -->
     <section id="galeria">
         <h2 class="section-title">Nosso Espaço</h2>
         <p class="section-subtitle">Conheça cada cantinho preparado com carinho para o seu conforto</p>
         <div class="galeria-grid">
-            <div class="galeria-item"><img src="https://images.unsplash.com/photo-15198235517b8-d84fa6ad39ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spa 1"></div>
-            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spa 2"></div>
-            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spa 3"></div>
-            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1512290900722-9a707b82b9db?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spa 4"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spa Ambiente 1"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-15198235517b8-d84fa6ad39ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spa Massagem"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spa Relaxamento"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spa Tratamentos"></div>
         </div>
     </section>
 
@@ -737,16 +679,14 @@
                 <p>Preencha os passos abaixo para garantir seu momento de relaxamento</p>
             </div>
 
-            <!-- Progresso -->
             <div class="progress-container">
                 <div class="progress-bar" id="progressBar"></div>
             </div>
             <div class="progress-text" id="progressText">Etapa 1 de 4</div>
 
-            <!-- Formulário multi-etapas -->
             <form id="formAgendamento" onsubmit="finalizarAgendamento(event)">
                 
-                <!-- ETAPA 1: Serviço e Adicionais -->
+                <!-- ETAPA 1 -->
                 <div class="form-step active" id="step1">
                     <div class="step-title">1. Escolha o Serviço e Adicionais</div>
                     
@@ -773,12 +713,11 @@
                     </div>
                 </div>
 
-                <!-- ETAPA 2: Data e Horário -->
+                <!-- ETAPA 2 -->
                 <div class="form-step" id="step2">
                     <div class="step-title">2. Escolha a Data e Horário</div>
                     
                     <div class="calendario-layout">
-                        <!-- Calendário -->
                         <div class="calendar-wrapper">
                             <div class="calendar-nav">
                                 <button type="button" class="btn-cal-nav" onclick="mudarMes(-1)"><i class="fa-solid fa-chevron-left"></i></button>
@@ -797,7 +736,6 @@
                             <div class="calendar-grid" id="calDaysGrid"></div>
                         </div>
 
-                        <!-- Painel de Horários -->
                         <div class="horarios-panel">
                             <div class="horarios-label" id="horariosLabel">Selecione uma data ao lado</div>
                             <div id="horariosContainer">
@@ -819,7 +757,7 @@
                     <div class="cal-error" id="calErrorMsg">Por favor, selecione uma data e um horário disponível antes de continuar.</div>
                 </div>
 
-                <!-- ETAPA 3: Dados Pessoais e Termos -->
+                <!-- ETAPA 3 -->
                 <div class="form-step" id="step3">
                     <div class="step-title">3. Seus Dados e Termos</div>
                     
@@ -860,7 +798,7 @@
                     </div>
                 </div>
 
-                <!-- ETAPA 4: Confirmação e Envio -->
+                <!-- ETAPA 4 -->
                 <div class="form-step" id="step4">
                     <div class="step-title">4. Revisão e Confirmação</div>
                     
@@ -872,13 +810,11 @@
                         <p><i class="fa-solid fa-phone"></i> <strong>Contato:</strong> <span id="revContato">-</span></p>
                     </div>
 
-                    <!-- Estado de Carregamento -->
                     <div class="loading-state" id="loadingState">
                         <div class="spinner"></div>
                         <p>Processando seu agendamento...</p>
                     </div>
 
-                    <!-- Estado de Sucesso -->
                     <div class="success-state" id="successState">
                         <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
                         <h3 style="color: var(--verde-salvia); margin-bottom: 10px;">Agendamento Realizado com Sucesso!</h3>
@@ -886,7 +822,6 @@
                     </div>
                 </div>
 
-                <!-- Botões de Navegação -->
                 <div class="modal-footer" id="modalFooterBtns">
                     <button type="button" class="btn-outline" id="btnAnterior" onclick="mudarEtapa(-1)" style="display: none;">Voltar</button>
                     <button type="button" class="btn-primary" id="btnProximo" onclick="mudarEtapa(1)">Próximo</button>
@@ -912,7 +847,6 @@
                 <button class="adm-nav-item" onclick="trocarAbaAdmin('agendamentos', this)"><i class="fa-solid fa-calendar-check"></i> Agendamentos</button>
             </div>
             <div class="adm-main">
-                <!-- Aba Dashboard -->
                 <div class="adm-tab active" id="tab-dashboard">
                     <div class="kpi-grid">
                         <div class="kpi-card">
@@ -950,7 +884,6 @@
                     </div>
                 </div>
 
-                <!-- Aba Agendamentos -->
                 <div class="adm-tab" id="tab-agendamentos">
                     <div class="adm-section-title">Lista de Agendamentos Realizados</div>
                     <div style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #f1f5f9;">
@@ -961,12 +894,10 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE FUNCIONALIDADES -->
+    <!-- SCRIPT -->
     <script>
-        // Número de telefone configurado
         const NUMERO_WHATSAPP = "5545999867857";
 
-        // Slider de Depoimentos
         let depAtual = 0;
         const depCards = document.querySelectorAll('.dep-card');
         const depDots = document.querySelectorAll('.dep-dot');
@@ -982,7 +913,6 @@
         function irParaDepoimento(index) { mostrarDepoimento(index); }
         setInterval(() => { mudarDepoimento(1); }, 6000);
 
-        // Contato via site
         function enviarContatoSite(e) {
             e.preventDefault();
             const nome = document.getElementById('contatoNome').value;
@@ -992,7 +922,6 @@
             window.open(`https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${encodeURIComponent(texto)}`, '_blank');
         }
 
-        // Modal de Agendamento & Etapas
         let etapaAtual = 1;
         const totalEtapas = 4;
 
@@ -1042,12 +971,10 @@
             document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
             document.getElementById(`step${etapaAtual}`).classList.add('active');
 
-            // Barra de progresso
             const progressoPct = (etapaAtual / totalEtapas) * 100;
             document.getElementById('progressBar').style.width = `${progressoPct}%`;
             document.getElementById('progressText').textContent = `Etapa ${etapaAtual} de ${totalEtapas}`;
 
-            // Botões
             const btnAnterior = document.getElementById('btnAnterior');
             const btnProximo = document.getElementById('btnProximo');
             const footerBtns = document.getElementById('modalFooterBtns');
@@ -1104,7 +1031,6 @@
             return true;
         }
 
-        // Calendário e Horários Dinâmicos com dias/horários indisponíveis aleatórios
         let dataAtualCal = new Date();
         let dataSelecionada = null;
         let horaSelecionada = null;
@@ -1121,7 +1047,6 @@
             const gridDays = document.getElementById('calDaysGrid');
             gridDays.innerHTML = '';
 
-            // Espaços vazios iniciais
             for(let i = 0; i < primeiroDiaIndex; i++) {
                 const emptyDiv = document.createElement('div');
                 emptyDiv.classList.add('cal-day', 'cal-empty');
@@ -1141,10 +1066,8 @@
                 if(dataCorrente < hoje) {
                     diaDiv.classList.add('cal-past');
                 } else {
-                    // Deixando dias aleatoriamente indisponíveis/ocupados
                     if((dia % 5 === 0) || (dia % 11 === 0)) {
                         diaDiv.classList.add('cal-past');
-                        diaDiv.title = "Dia lotado / indisponível";
                     } else {
                         if(dia % 3 === 0) diaDiv.classList.add('cal-has-events');
                         
@@ -1174,7 +1097,6 @@
             
             let html = '<div class="horarios-grid">';
             horariosFixos.forEach((hora, idx) => {
-                // Deixando horários aleatoriamente indisponíveis
                 const ocupado = (diaNum + idx) % 4 === 0;
                 if(ocupado) {
                     html += `<div class="horario-slot ocupado">${hora}</div>`;
@@ -1218,7 +1140,6 @@
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('successState').style.display = 'block';
 
-                // Formulando a mensagem pronta para o WhatsApp
                 const servico = document.querySelector('input[name="servico"]:checked').value;
                 const total = document.getElementById('inputTotalEstimado').value;
                 const nome = document.getElementById('clienteNome').value;
@@ -1242,7 +1163,6 @@
             }, 2500);
         }
 
-        // Admin painel
         function abrirAdmin() {
             document.getElementById('adminOverlay').classList.add('active');
         }
