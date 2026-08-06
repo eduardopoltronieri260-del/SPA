@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Essência Relax Spa | Renove seu corpo e sua mente</title>
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome (Ícones) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Chart.js para o Dashboard Administrativo -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 
     <style>
@@ -79,8 +76,8 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             text-align: center; color: var(--branco); padding: 0 20px;
         }
-        #hero h1 { font-size: 4rem; margin-bottom: 20px; animation: fadeInDown 1s ease; color: white; }
-        #hero p { font-size: 1.3rem; margin-bottom: 30px; max-width: 600px; animation: fadeInUp 1s ease 0.3s; animation-fill-mode: both; }
+        #hero h1 { font-size: 4rem; margin-bottom: 20px; color: white; }
+        #hero p { font-size: 1.3rem; margin-bottom: 30px; max-width: 600px; }
 
         /* =======================================================================
            3. SEÇÕES COMUNS
@@ -115,7 +112,7 @@
         .beneficio-item:hover i { background: var(--verde-salvia); color: var(--branco); transform: rotateY(360deg); }
 
         /* =======================================================================
-           4. DEPOIMENTOS SLIDER PREMIUM (NOVO)
+           4. DEPOIMENTOS SLIDER PREMIUM
            ======================================================================= */
         #depoimentos { background-color: var(--verde-salvia); color: var(--branco); padding: 80px 5%; }
         #depoimentos .section-title { color: var(--branco); margin-bottom: 0.5rem; }
@@ -252,8 +249,12 @@
         .progress-text { text-align: right; font-size: 0.85rem; color: var(--texto-claro); font-weight: 600; margin-bottom: 30px; }
 
         /* Etapas do Formulário */
-        .form-step { display: none; animation: fadeIn 0.5s ease; }
-        .form-step.active { display: block; }
+        .form-step { display: none; }
+        .form-step.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         .step-title { font-size: 1.4rem; color: var(--texto-escuro); border-bottom: 2px solid var(--bege); padding-bottom: 10px; margin-bottom: 25px; }
 
         /* Inputs Modal */
@@ -287,13 +288,14 @@
         /* Loading e Sucesso */
         .loading-state, .success-state { text-align: center; padding: 40px 0; display: none; }
         .spinner { border: 4px solid var(--bege); border-top: 4px solid var(--verde-salvia); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .success-icon { font-size: 4rem; color: var(--verde-salvia); margin-bottom: 20px; }
         .success-booking-info { background: var(--bege); border-radius: 12px; padding: 20px; margin: 20px auto; max-width: 400px; text-align: left; }
         .success-booking-info p { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; font-size: 0.95rem; }
         .success-booking-info i { color: var(--verde-salvia); width: 20px; }
 
         /* =======================================================================
-           8. CALENDÁRIO DE AGENDAMENTO (NOVO)
+           8. CALENDÁRIO DE AGENDAMENTO
            ======================================================================= */
         .calendario-layout {
             display: grid; grid-template-columns: 1fr 1fr; gap: 25px;
@@ -384,7 +386,7 @@
         .cal-error { color: var(--erro); font-size: 0.85rem; margin-top: 12px; display: none; }
 
         /* =======================================================================
-           9. DASHBOARD ADMINISTRATIVO (NOVO)
+           9. DASHBOARD ADMINISTRATIVO
            ======================================================================= */
         #adminOverlay {
             position: fixed; inset: 0; background: #f1f5f9;
@@ -494,288 +496,765 @@
         }
         .btn-export.pdf   { background: #fef2f2; color: #dc2626; border-color: #fca5a5; }
         .btn-export.excel { background: #f0fdf4; color: #16a34a; border-color: #86efac; }
-        .btn-export.csv   { background: #eff6ff; color: #2563eb; border-color: #93c5fd; }
-        .btn-export:hover { transform: translateY(-1px); box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-
-        /* Tabela */
-        .adm-table-wrapper { overflow-x: auto; border-radius: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); border: 1px solid #f1f5f9; }
-        .adm-table { width: 100%; border-collapse: collapse; background: white; font-size: 0.875rem; }
-        .adm-table thead th {
-            padding: 13px 16px; text-align: left; font-weight: 600; font-size: 0.78rem;
-            color: #64748b; background: #f8fafc; border-bottom: 1px solid #e2e8f0;
-            text-transform: uppercase; letter-spacing: 0.4px; cursor: pointer; white-space: nowrap;
-            user-select: none;
-        }
-        .adm-table thead th:hover { background: #f1f5f9; color: #334155; }
-        .adm-table thead th.sorted-asc::after { content: ' ↑'; color: var(--verde-salvia); }
-        .adm-table thead th.sorted-desc::after { content: ' ↓'; color: var(--verde-salvia); }
-        .adm-table tbody td { padding: 13px 16px; border-bottom: 1px solid #f1f5f9; color: #334155; }
-        .adm-table tbody tr:last-child td { border-bottom: none; }
-        .adm-table tbody tr:hover { background: #f8fafc; }
-        .td-id { font-weight: 700; color: #64748b; font-size: 0.8rem; }
-        .td-cliente { font-weight: 500; color: #1e293b; }
-        .badge {
-            display: inline-flex; align-items: center; gap: 5px;
-            padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
-        }
-        .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
-        .badge-confirmado { background: #dcfce7; color: #15803d; }
-        .badge-confirmado::before { background: #22c55e; }
-        .badge-pendente { background: #fef9c3; color: #854d0e; }
-        .badge-pendente::before { background: #eab308; }
-        .badge-cancelado { background: #fee2e2; color: #991b1b; }
-        .badge-cancelado::before { background: #ef4444; }
-
-        /* Paginação */
-        .adm-pagination { display: flex; align-items: center; justify-content: between; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
-        .adm-pagination-info { font-size: 0.82rem; color: #64748b; flex: 1; }
-        .adm-pagination-btns { display: flex; gap: 6px; }
-        .btn-page {
-            width: 34px; height: 34px; border-radius: 8px; border: 1px solid #e2e8f0;
-            background: white; cursor: pointer; font-size: 0.82rem; color: #475569;
-            transition: var(--transicao); display: flex; align-items: center; justify-content: center;
-        }
-        .btn-page:hover:not(:disabled) { background: #f1f5f9; border-color: #cbd5e1; }
-        .btn-page.active { background: var(--verde-salvia); color: white; border-color: var(--verde-salvia); font-weight: 600; }
-        .btn-page:disabled { opacity: 0.4; cursor: not-allowed; }
-
-        /* Toast */
-        .adm-toast {
-            position: fixed; bottom: 30px; right: 30px; background: #1e293b; color: white;
-            padding: 14px 22px; border-radius: 12px; font-size: 0.88rem;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25); z-index: 99999;
-            display: flex; align-items: center; gap: 10px; transform: translateY(80px);
-            transition: transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275), opacity 0.35s ease;
-            opacity: 0; pointer-events: none; max-width: 360px;
-        }
-        .adm-toast.show { transform: translateY(0); opacity: 1; }
-        .adm-toast i { font-size: 1.1rem; }
-        .adm-toast.success i { color: #22c55e; }
-        .adm-toast.info i { color: #60a5fa; }
-        .adm-toast.warning i { color: #fbbf24; }
-
-        /* =======================================================================
-           10. ANIMAÇÕES E HELPERS
-           ======================================================================= */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp   { from { opacity: 0; transform: translateY(30px);  } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn     { from { opacity: 0; transform: translateY(10px);  } to { opacity: 1; transform: translateY(0); } }
-        @keyframes spin       { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes countUp    { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }
-
-        /* =======================================================================
-           11. RESPONSIVIDADE
-           ======================================================================= */
-        @media (max-width: 991px) {
-            #hero h1 { font-size: 3rem; }
-            #sobre { flex-direction: column; }
-            .menu-toggle { display: block; }
-            nav ul { position: absolute; top: 70px; left: -100%; width: 100%; background-color: var(--branco); flex-direction: column; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
-            nav ul.active { left: 0; }
-            nav ul li { margin: 15px 0; }
-            .btn-agendar-header { display: none; }
-            .charts-grid { grid-template-columns: 1fr; }
-            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-            .section-title { font-size: 2rem; }
-            #contato { flex-direction: column; }
-            .form-grid { grid-template-columns: 1fr; }
-            .form-group.full-width { grid-column: span 1; }
-            .modal-content { padding: 25px 20px; width: 95%; }
-            .calendario-layout { grid-template-columns: 1fr; }
-            .dep-slider-wrapper { padding: 0 40px; }
-            .adm-sidebar { width: 60px; }
-            .adm-nav-item span { display: none; }
-            .adm-nav-item { justify-content: center; padding: 12px; margin: 2px 4px; }
-            .adm-sidebar-section { display: none; }
-            .adm-topbar-brand small { display: none; }
-            .kpi-grid { grid-template-columns: 1fr 1fr; }
-            .adm-export-btns .btn-export span { display: none; }
-        }
-        @media (max-width: 480px) {
-            .kpi-grid { grid-template-columns: 1fr; }
-            .horarios-grid { grid-template-columns: repeat(2, 1fr); }
-        }
     </style>
 </head>
 <body>
 
-    <!-- =====================================================================
-         1. HEADER
-         ===================================================================== -->
-    <header id="header">
-        <a href="#" class="logo"><i class="fa-solid fa-leaf"></i> Essência</a>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-spa"></i> Essência Relax Spa
+        </div>
         <nav>
-            <ul id="nav-menu">
+            <ul>
                 <li><a href="#hero">Início</a></li>
-                <li><a href="#sobre">Sobre Nós</a></li>
+                <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#servicos">Serviços</a></li>
                 <li><a href="#beneficios">Benefícios</a></li>
                 <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#galeria">Galeria</a></li>
                 <li><a href="#contato">Contato</a></li>
+                <li><button class="btn-primary" onclick="abrirModalAgendamento()">Agendar</button></li>
             </ul>
         </nav>
-        <a href="#servicos" class="btn-primary btn-agendar-header">Ver Serviços</a>
-        <div class="menu-toggle" id="mobile-menu"><i class="fa-solid fa-bars"></i></div>
+        <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
     </header>
 
-    <!-- =====================================================================
-         2. HERO
-         ===================================================================== -->
+    <!-- Hero -->
     <section id="hero">
-        <h1>Renove seu corpo e sua mente.</h1>
-        <p>Descubra o equilíbrio perfeito através de massagens terapêuticas e relaxantes desenvolvidas especialmente para o seu bem-estar completo.</p>
-        <a href="#servicos" class="btn-primary" style="padding: 15px 35px; font-size: 1.1rem;">Agende Agora</a>
+        <h1>Renove seu corpo e sua mente</h1>
+        <p>Desfrute de momentos únicos de relaxamento e bem-estar em um ambiente acolhedor e revigorante.</p>
+        <button class="btn-primary" onclick="abrirModalAgendamento()">Agendar Experiência</button>
     </section>
 
-    <!-- =====================================================================
-         3. SOBRE
-         ===================================================================== -->
-    <section id="sobre" class="reveal">
+    <!-- Sobre -->
+    <section id="sobre">
         <div class="sobre-img">
-            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ambiente do Spa Essência">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Spa Ambiente">
         </div>
         <div class="sobre-text">
-            <h2>Nossa História e Filosofia</h2>
-            <p>A <strong>Essência Relax Spa</strong> nasceu como um projeto de conclusão de curso (TCC) da disciplina de Administração, idealizado pelos estudantes <strong>João Vitor Minozzo, Milena, Maria e Alessandra</strong>. O projeto surgiu da proposta de desenvolver um empreendimento que unisse planejamento estratégico, inovação e bem-estar, transformando uma ideia acadêmica em uma experiência com propósito.</p>
-            <p>Ao longo do desenvolvimento, cada detalhe foi pensado com dedicação, criatividade e trabalho em equipe. O que começou como um desafio em sala de aula tornou-se a representação de um sonho: criar um espaço voltado ao cuidado das pessoas, oferecendo conforto, tranquilidade e momentos de equilíbrio em meio à correria do dia a dia.</p>
-            <p>Na Essência Relax Spa, acreditamos que o bem-estar vai além do relaxamento físico. Nossa filosofia é proporcionar um ambiente acolhedor, onde cada pessoa possa renovar as energias, aliviar o estresse e encontrar um verdadeiro refúgio para o corpo e a mente.</p>
+            <h2>Um santuário de paz para o seu dia a dia</h2>
+            <p>O Essência Relax Spa foi criado com o propósito de proporcionar pausas conscientes na rotina acelerada. Nossos tratamentos combinam técnicas milenares e inovadoras para restaurar o equilíbrio do corpo e da mente.</p>
+            <p>Contamos com terapeutas altamente qualificados, óleos essenciais orgânicos e uma atmosfera projetada para acoger todos os seus sentidos.</p>
             <div class="mvv">
-                <div class="mvv-item"><i class="fa-solid fa-eye"></i><h4>Visão</h4><p style="font-size:0.8rem;color:#666;margin-top:5px;">Ser o principal refúgio de paz da cidade.</p></div>
-                <div class="mvv-item"><i class="fa-solid fa-bullseye"></i><h4>Missão</h4><p style="font-size:0.8rem;color:#666;margin-top:5px;">Proporcionar equilíbrio total ao corpo e mente.</p></div>
-                <div class="mvv-item"><i class="fa-solid fa-heart"></i><h4>Valores</h4><p style="font-size:0.8rem;color:#666;margin-top:5px;">Cuidado, respeito e excelência técnica.</p></div>
+                <div class="mvv-item">
+                    <i class="fa-solid fa-bullseye"></i>
+                    <h4>Missão</h4>
+                    <p style="font-size: 0.8rem; color: var(--texto-claro); margin-top: 5px;">Promover saúde e paz interior.</p>
+                </div>
+                <div class="mvv-item">
+                    <i class="fa-solid fa-eye"></i>
+                    <h4>Visão</h4>
+                    <p style="font-size: 0.8rem; color: var(--texto-claro); margin-top: 5px;">Ser referência em bem-estar.</p>
+                </div>
+                <div class="mvv-item">
+                    <i class="fa-solid fa-heart"></i>
+                    <h4>Valores</h4>
+                    <p style="font-size: 0.8rem; color: var(--texto-claro); margin-top: 5px;">Cuidado, respeito e harmonia.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- =====================================================================
-         4. SERVIÇOS
-         ===================================================================== -->
-    <section id="servicos" class="reveal">
-        <h2 class="section-title">Nossos Serviços</h2>
-        <p class="section-subtitle">Técnicas especializadas para atender às suas necessidades únicas.</p>
+    <!-- Serviços -->
+    <section id="servicos">
+        <h2 class="section-title">Nossos Tratamentos</h2>
+        <p class="section-subtitle">Escolha a experiência perfeita para o seu momento de autocuidado</p>
         <div class="cards-container">
             <div class="card">
-                <i class="fa-solid fa-spa"></i>
+                <i class="fa-solid fa-hands-bubbles"></i>
                 <h3>Massagem Relaxante</h3>
-                <p>Movimentos suaves e contínuos que promovem o relaxamento profundo e aliviam a tensão diária.</p>
-                <div class="preco">R$ 120,00</div>
-                <button class="btn-primary btn-card btn-abrir-modal" data-servico="Massagem Relaxante">Agendar Sessão</button>
-            </div>
-            <div class="card">
-                <i class="fa-solid fa-hand-holding-medical"></i>
-                <h3>Massagem Terapêutica</h3>
-                <p>Foco no tratamento de dores específicas, melhorando a mobilidade e reduzindo inflamações locais.</p>
+                <p>Alivia tensões musculares, melhora a circulação e proporciona profundo relaxamento físico e mental.</p>
                 <div class="preco">R$ 150,00</div>
-                <button class="btn-primary btn-card btn-abrir-modal" data-servico="Massagem Terapêutica">Agendar Sessão</button>
+                <button class="btn-primary btn-card" onclick="selecionarServicoCard('Massagem Relaxante', '150')">Agendar</button>
             </div>
             <div class="card">
-                <i class="fa-solid fa-droplet"></i>
-                <h3>Drenagem Linfática</h3>
-                <p>Estimula o sistema linfático, reduzindo o inchaço e auxiliando na eliminação de toxinas do corpo.</p>
-                <div class="preco">R$ 130,00</div>
-                <button class="btn-primary btn-card btn-abrir-modal" data-servico="Drenagem Linfática">Agendar Sessão</button>
+                <i class="fa-solid fa-spa"></i>
+                <h3>Limpeza de Pele Profunda</h3>
+                <p>Remove impurezas, células mortas e desobstrui os poros, devolvendo o viço e a luminosidade natural.</p>
+                <div class="preco">R$ 180,00</div>
+                <button class="btn-primary btn-card" onclick="selecionarServicoCard('Limpeza de Pele Profunda', '180')">Agendar</button>
             </div>
             <div class="card">
-                <i class="fa-solid fa-shoe-prints"></i>
-                <h3>Reflexologia</h3>
-                <p>Terapia baseada na pressão de pontos específicos nos pés que refletem e curam órgãos internos.</p>
-                <div class="preco">R$ 110,00</div>
-                <button class="btn-primary btn-card btn-abrir-modal" data-servico="Reflexologia">Agendar Sessão</button>
-            </div>
-            <div class="card">
-                <i class="fa-solid fa-person-running"></i>
-                <h3>Massagem Desportiva</h3>
-                <p>Ideal para atletas. Previne lesões, alivia a fadiga muscular e acelera a recuperação física.</p>
-                <div class="preco">R$ 160,00</div>
-                <button class="btn-primary btn-card btn-abrir-modal" data-servico="Massagem Desportiva">Agendar Sessão</button>
-            </div>
-            <div class="card">
-                <i class="fa-solid fa-seedling"></i>
-                <h3>Aromaterapia</h3>
-                <p>Combinação de massagem suave com óleos essenciais puros para harmonizar emoções e o corpo.</p>
-                <div class="preco">R$ 140,00</div>
-                <button class="btn-primary btn-card btn-abrir-modal" data-servico="Aromaterapia">Agendar Sessão</button>
+                <i class="fa-solid fa-hot-tub-person"></i>
+                <h3>Banho de Ofurô com Ervas</h3>
+                <p>Imersão relaxante em água aquecida com ervas medicinais e óleos essenciais para desintoxicação.</p>
+                <div class="preco">R$ 220,00</div>
+                <button class="btn-primary btn-card" onclick="selecionarServicoCard('Banho de Ofurô com Ervas', '220')">Agendar</button>
             </div>
         </div>
     </section>
 
-    <!-- =====================================================================
-         5. BENEFÍCIOS
-         ===================================================================== -->
-    <section id="beneficios" class="reveal">
-        <h2 class="section-title">Por que escolher o Essência?</h2>
-        <p class="section-subtitle">Mais do que relaxamento — um compromisso com o seu bem-estar integral.</p>
+    <!-- Benefícios -->
+    <section id="beneficios">
+        <h2 class="section-title">Por que nos escolher?</h2>
+        <p class="section-subtitle">Diferenciais que cuidam de você em cada detalhe</p>
         <div class="beneficios-grid">
-            <div class="beneficio-item"><i class="fa-solid fa-brain"></i><h4>Redução do Estresse</h4></div>
-            <div class="beneficio-item"><i class="fa-solid fa-child-reaching"></i><h4>Alívio Muscular</h4></div>
-            <div class="beneficio-item"><i class="fa-solid fa-heart-pulse"></i><h4>Melhora da Circulação</h4></div>
-            <div class="beneficio-item"><i class="fa-solid fa-moon"></i><h4>Qualidade do Sono</h4></div>
-            <div class="beneficio-item"><i class="fa-solid fa-face-smile-beam"></i><h4>Bem-estar Emocional</h4></div>
-            <div class="beneficio-item"><i class="fa-solid fa-dumbbell"></i><h4>Recuperação Física</h4></div>
+            <div class="beneficio-item">
+                <i class="fa-solid fa-leaf"></i>
+                <h3>Produtos Orgânicos</h3>
+                <p style="color: var(--texto-claro); margin-top: 10px; font-size: 0.9rem;">Cosméticos naturais e livres de parabenos para a sua pele.</p>
+            </div>
+            <div class="beneficio-item">
+                <i class="fa-solid fa-mug-hot"></i>
+                <h3>Chás e Aromas</h3>
+                <p style="color: var(--texto-claro); margin-top: 10px; font-size: 0.9rem;">Experiência sensorial completa com chás calmantes e aromaterapia.</p>
+            </div>
+            <div class="beneficio-item">
+                <i class="fa-solid fa-shield-heart"></i>
+                <h3>Ambiente Exclusivo</h3>
+                <p style="color: var(--texto-claro); margin-top: 10px; font-size: 0.9rem;">Salas privativas e climatizadas com isolamento acústico.</p>
+            </div>
         </div>
     </section>
 
-    <!-- =====================================================================
-         6. DEPOIMENTOS — SLIDER PREMIUM (NOVO)
-         ===================================================================== -->
-    <section id="depoimentos" class="reveal">
-        <!-- Resumo de avaliações com contador animado -->
+    <!-- Depoimentos -->
+    <section id="depoimentos">
+        <h2 class="section-title">O que dizem nossos clientes</h2>
+        <p class="section-subtitle">Histórias reais de quem já vivenciou nossa essência</p>
+        
         <div class="rating-summary">
             <div class="rating-stars-big">★★★★★</div>
-            <div class="rating-score-num"><span id="ratingCounter">0</span>/5</div>
-            <div class="rating-base-text">Baseado em <span id="avaliacoesCounter">0</span> avaliações</div>
+            <div class="rating-score-num">4.9 / 5.0</div>
+            <div class="rating-base-text">Baseado em mais de 300 avaliações de clientes</div>
         </div>
 
-        <h2 class="section-title">O que nossos clientes dizem</h2>
-        <p class="section-subtitle" style="color:rgba(255,255,255,0.8);">Experiências reais de quem já viveu o Essência.</p>
-
-        <!-- Slider -->
         <div class="dep-slider-wrapper">
-            <button class="dep-nav-btn dep-nav-prev" id="depPrev" aria-label="Depoimento anterior">
-                <i class="fa-solid fa-chevron-left"></i>
-            </button>
+            <button class="dep-nav-btn dep-nav-prev" onclick="mudarDepoimento(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="dep-nav-btn dep-nav-next" onclick="mudarDepoimento(1)"><i class="fa-solid fa-chevron-right"></i></button>
 
             <div class="dep-track-outer">
-                <!-- Cards gerados pelo JavaScript -->
-                <div id="depTrack"></div>
+                <div class="dep-card active">
+                    <div class="estrelas">★★★★★</div>
+                    <p class="dep-texto">"Simplesmente perfeito! A massagem relaxante me tirou todo o estresse da semana. O atendimento é impecável e o ambiente transmite uma paz incrível."</p>
+                    <div class="dep-info">
+                        <span class="dep-nome">Mariana Souza</span>
+                        <span class="dep-cargo">Arquiteta</span>
+                        <span class="dep-servico">Massagem Relaxante</span>
+                    </div>
+                </div>
+                <div class="dep-card">
+                    <div class="estrelas">★★★★★</div>
+                    <p class="dep-texto">"Fiz a limpeza de pele e o resultado superou todas as expectativas. Minha pele ficou renovada e o cuidado da profissional faz toda a diferença."</p>
+                    <div class="dep-info">
+                        <span class="dep-nome">Camila Ribeiro</span>
+                        <span class="dep-cargo">Empresária</span>
+                        <span class="dep-servico">Limpeza de Pele Profunda</span>
+                    </div>
+                </div>
+                <div class="dep-card">
+                    <div class="estrelas">★★★★★</div>
+                    <p class="dep-texto">"O banho de ofurô é uma experiência revigorante obrigatória! Saí de lá leve, renovado e pronto para encarar a rotina. Recomendo de olhos fechados."</p>
+                    <div class="dep-info">
+                        <span class="dep-nome">Lucas Mendes</span>
+                        <span class="dep-cargo">Engenheiro</span>
+                        <span class="dep-servico">Banho de Ofurô com Ervas</span>
+                    </div>
+                </div>
             </div>
 
-            <button class="dep-nav-btn dep-nav-next" id="depNext" aria-label="Próximo depoimento">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
+            <div class="dep-dots" id="depDotsContainer">
+                <button class="dep-dot active" onclick="irParaDepoimento(0)"></button>
+                <button class="dep-dot" onclick="irParaDepoimento(1)"></button>
+                <button class="dep-dot" onclick="irParaDepoimento(2)"></button>
+            </div>
         </div>
-
-        <!-- Indicadores (dots) -->
-        <div class="dep-dots" id="depDots"></div>
     </section>
 
-    <!-- =====================================================================
-         7. GALERIA
-         ===================================================================== -->
-    <section id="galeria" class="reveal">
-        <h2 class="section-title">Nossa Galeria</h2>
-        <p class="section-subtitle">Um espaço pensado em cada detalhe para o seu conforto.</p>
+    <!-- Galeria -->
+    <section id="galeria">
+        <h2 class="section-title">Nosso Espaço</h2>
+        <p class="section-subtitle">Conheça cada cantinho preparado com carinho para o seu conforto</p>
         <div class="galeria-grid">
-            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=600&q=80" alt="Sala de massagem"></div>
-            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80" alt="Ambiente relaxante"></div>
-            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80" alt="Sessão terapêutica"></div>
-            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Aromaterapia"></div>
-            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1596178060810-72f53ce9a65c?auto=format&fit=crop&w=600&q=80" alt="Espaço zen"></div>
-            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=600&q=80" alt="Cuidado corporal"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-15198235517b8-d84fa6ad39ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spa 1"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spa 2"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spa 3"></div>
+            <div class="galeria-item"><img src="https://images.unsplash.com/photo-1512290900722-9a707b82b9db?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spa 4"></div>
         </div>
     </section>
 
-    <!-- =====================================================================
-         8. CONTATO
-         ===================================================================== -->
-    <section id="contato" class="reveal">
+    <!-- Contato -->
+    <section id="contato">
         <div class="contato-info">
-            <h2 style="color:var(--verde-salvia);margin-bottom:20px;">Fale Conosco</h2>
-            <p style="color:var(--texto-claro);margin-bottom:30px;">Estamos prontos para atender você. Entre em contato ou visite nosso espaço.</p>
-            <div class="info-item"><i class="fa-solid fa-location-dot"></i><div><strong>Endereço</strong><p>Rua das Flores, 1200 — Centro, Matelândia/PR</p></div></div>
-            <div class="info-item"><i class="fa-brands fa-whatsapp"></i><div><strong>WhatsApp</strong><p>+55 (45) 9986-7857</p></div></div>
-            <div class="info-item"><i class="fa-solid fa-clock"></i><div><strong>Horário</strong><p>Seg–Sáb: 9h às 19h | Dom:... (70 KB restante(s))
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--verde-salvia);">Fale Conosco</h2>
+            <p style="color: var(--texto-claro); margin-bottom: 30px;">Tem alguma dúvida ou deseja agendar um horário especial? Entre em contato ou venha nos visitar.</p>
+            <div class="info-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <h4>Localização</h4>
+                    <p style="color: var(--texto-claro); font-size: 0.9rem;">Av. das Cataratas, 1200 - Centro, Matelândia - PR</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                    <h4>Telefone / WhatsApp</h4>
+                    <p style="color: var(--texto-claro); font-size: 0.9rem;">(45) 9986-7857</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <h4>E-mail</h4>
+                    <p style="color: var(--texto-claro); font-size: 0.9rem;">contato@essenciarelaxspa.com.br</p>
+                </div>
+            </div>
+        </div>
+        <div class="contato-form">
+            <h3 style="margin-bottom: 20px;">Envie uma mensagem</h3>
+            <form onsubmit="enviarContatoSite(event)">
+                <div class="input-group">
+                    <input type="text" id="contatoNome" placeholder="Seu nome" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="contatoEmail" placeholder="Seu e-mail" required>
+                </div>
+                <div class="input-group">
+                    <textarea id="contatoMsg" placeholder="Sua mensagem..." required></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p style="color: #aaa; max-width: 400px; font-size: 0.9rem;">Essência Relax Spa - Um refúgio dedicado ao seu bem-estar, equilíbrio e renovação energética.</p>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Essência Relax Spa. Todos os direitos reservados.</span>
+            <button id="btnAdminOculto" onclick="abrirAdmin()"><i class="fa-solid fa-lock"></i> Admin</button>
+        </div>
+    </footer>
+
+    <!-- MODAL DE AGENDAMENTO (4 ETAPAS) -->
+    <div class="modal-overlay" id="modalAgendamento">
+        <div class="modal-content">
+            <span class="close-modal" onclick="fecharModalAgendamento()">&times;</span>
+            <div class="modal-header">
+                <h2>Agende sua Experiência</h2>
+                <p>Preencha os passos abaixo para garantir seu momento de relaxamento</p>
+            </div>
+
+            <!-- Progresso -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="progress-text" id="progressText">Etapa 1 de 4</div>
+
+            <!-- Formulário multi-etapas -->
+            <form id="formAgendamento" onsubmit="finalizarAgendamento(event)">
+                
+                <!-- ETAPA 1: Serviço e Adicionais -->
+                <div class="form-step active" id="step1">
+                    <div class="step-title">1. Escolha o Serviço e Adicionais</div>
+                    
+                    <div class="form-group">
+                        <label>Serviço Principal *</label>
+                        <div class="radio-group">
+                            <label class="radio-item"><input type="radio" name="servico" value="Massagem Relaxante" data-preco="150" checked onchange="atualizarResumoPreco()"> Massagem Relaxante (R$ 150)</label>
+                            <label class="radio-item"><input type="radio" name="servico" value="Limpeza de Pele Profunda" data-preco="180" onchange="atualizarResumoPreco()"> Limpeza de Pele Profunda (R$ 180)</label>
+                            <label class="radio-item"><input type="radio" name="servico" value="Banho de Ofurô com Ervas" data-preco="220" onchange="atualizarResumoPreco()"> Banho de Ofurô com Ervas (R$ 220)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label>Adicionais Opcionais</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item"><input type="checkbox" name="adicional" value="Chá Calmante Especial" data-preco="20" onchange="atualizarResumoPreco()"> Chá Calmante Especial (+R$ 20)</label>
+                            <label class="checkbox-item"><input type="checkbox" name="adicional" value="Aromaterapia Premium" data-preco="35" onchange="atualizarResumoPreco()"> Aromaterapia Premium (+R$ 35)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label>Valor Total Estimado</label>
+                        <input type="text" id="inputTotalEstimado" value="R$ 150,00" readonly>
+                    </div>
+                </div>
+
+                <!-- ETAPA 2: Data e Horário -->
+                <div class="form-step" id="step2">
+                    <div class="step-title">2. Escolha a Data e Horário</div>
+                    
+                    <div class="calendario-layout">
+                        <!-- Calendário -->
+                        <div class="calendar-wrapper">
+                            <div class="calendar-nav">
+                                <button type="button" class="btn-cal-nav" onclick="mudarMes(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                                <div class="cal-month-year" id="calMonthYear">Mês Ano</div>
+                                <button type="button" class="btn-cal-nav" onclick="mudarMes(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                            <div class="calendar-grid" id="calHeaderGrid">
+                                <div class="cal-header">Dom</div>
+                                <div class="cal-header">Seg</div>
+                                <div class="cal-header">Ter</div>
+                                <div class="cal-header">Qua</div>
+                                <div class="cal-header">Qui</div>
+                                <div class="cal-header">Sex</div>
+                                <div class="cal-header">Sáb</div>
+                            </div>
+                            <div class="calendar-grid" id="calDaysGrid"></div>
+                        </div>
+
+                        <!-- Painel de Horários -->
+                        <div class="horarios-panel">
+                            <div class="horarios-label" id="horariosLabel">Selecione uma data ao lado</div>
+                            <div id="horariosContainer">
+                                <div class="cal-placeholder">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                    <span>Nenhum dia selecionado. Escolha uma data no calendário.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="agendamento-selecionado" id="agendamentoSelecionadoBox">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Data selecionada:</strong> <span id="spanDataEscolhida">-</span><br>
+                            <strong>Horário selecionado:</strong> <span id="spanHoraEscolhida">-</span>
+                        </div>
+                    </div>
+                    <div class="cal-error" id="calErrorMsg">Por favor, selecione uma data e um horário disponível antes de continuar.</div>
+                </div>
+
+                <!-- ETAPA 3: Dados Pessoais e Termos -->
+                <div class="form-step" id="step3">
+                    <div class="step-title">3. Seus Dados e Termos</div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Nome Completo *</label>
+                            <input type="text" id="clienteNome" placeholder="Digite seu nome">
+                            <div class="error-message" id="errNome">Preencha seu nome.</div>
+                        </div>
+                        <div class="form-group">
+                            <label>E-mail *</label>
+                            <input type="email" id="clienteEmail" placeholder="seu@email.com">
+                            <div class="error-message" id="errEmail">Preencha um e-mail válido.</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Telefone / WhatsApp *</label>
+                            <input type="tel" id="clienteTel" placeholder="(45) 99999-9999">
+                            <div class="error-message" id="errTel">Preencha seu telefone.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 10px;">
+                        <label>Termos e Condições do Spa</label>
+                        <div class="termos-box">
+                            <strong>Política de Agendamento e Cancelamento:</strong>
+                            <ul>
+                                <li>Solicitamos chegada com 10 minutos de antecedência.</li>
+                                <li>Cancelamentos devem ser feitos com no mínimo 4 horas de antecedência.</li>
+                                <li>O pagamento é realizado diretamente no estabelecimento no dia do atendimento.</li>
+                            </ul>
+                        </div>
+                        <div class="termo-aceite">
+                            <label class="checkbox-item" style="font-weight: 500;">
+                                <input type="checkbox" id="checkTermos" required> Li e concordo com os termos e políticas do spa.
+                            </label>
+                            <div class="error-message" id="errTermos">Você precisa aceitar os termos.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ETAPA 4: Confirmação e Envio -->
+                <div class="form-step" id="step4">
+                    <div class="step-title">4. Revisão e Confirmação</div>
+                    
+                    <div class="success-booking-info" style="margin: 0 auto 20px auto; max-width: 100%;">
+                        <p><i class="fa-solid fa-spa"></i> <strong>Serviço:</strong> <span id="revServico">-</span></p>
+                        <p><i class="fa-solid fa-receipt"></i> <strong>Total:</strong> <span id="revTotal">-</span></p>
+                        <p><i class="fa-solid fa-calendar"></i> <strong>Data e Hora:</strong> <span id="revDataHora">-</span></p>
+                        <p><i class="fa-solid fa-user"></i> <strong>Cliente:</strong> <span id="revCliente">-</span></p>
+                        <p><i class="fa-solid fa-phone"></i> <strong>Contato:</strong> <span id="revContato">-</span></p>
+                    </div>
+
+                    <!-- Estado de Carregamento -->
+                    <div class="loading-state" id="loadingState">
+                        <div class="spinner"></div>
+                        <p>Processando seu agendamento...</p>
+                    </div>
+
+                    <!-- Estado de Sucesso -->
+                    <div class="success-state" id="successState">
+                        <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+                        <h3 style="color: var(--verde-salvia); margin-bottom: 10px;">Agendamento Realizado com Sucesso!</h3>
+                        <p style="color: var(--texto-claro); margin-bottom: 20px;">Você será redirecionado para o WhatsApp com sua mensagem pronta para confirmar o atendimento.</p>
+                    </div>
+                </div>
+
+                <!-- Botões de Navegação -->
+                <div class="modal-footer" id="modalFooterBtns">
+                    <button type="button" class="btn-outline" id="btnAnterior" onclick="mudarEtapa(-1)" style="display: none;">Voltar</button>
+                    <button type="button" class="btn-primary" id="btnProximo" onclick="mudarEtapa(1)">Próximo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- DASHBOARD ADMINISTRATIVO -->
+    <div id="adminOverlay">
+        <div class="adm-topbar">
+            <div class="adm-topbar-brand">
+                <div class="brand-dot"></div>
+                <span>Essência Relax Spa</span>
+                <small>Painel Administrativo</small>
+            </div>
+            <button class="adm-close-btn" onclick="fecharAdmin()"><i class="fa-solid fa-xmark"></i> Sair do Painel</button>
+        </div>
+        <div class="adm-body">
+            <div class="adm-sidebar">
+                <div class="adm-sidebar-section">Menu Principal</div>
+                <button class="adm-nav-item active" onclick="trocarAbaAdmin('dashboard', this)"><i class="fa-solid fa-chart-pie"></i> Dashboard</button>
+                <button class="adm-nav-item" onclick="trocarAbaAdmin('agendamentos', this)"><i class="fa-solid fa-calendar-check"></i> Agendamentos</button>
+            </div>
+            <div class="adm-main">
+                <!-- Aba Dashboard -->
+                <div class="adm-tab active" id="tab-dashboard">
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-card-header">
+                                <span class="kpi-card-label">Agendamentos Hoje</span>
+                                <div class="kpi-icon verde"><i class="fa-solid fa-calendar-day"></i></div>
+                            </div>
+                            <div class="kpi-value">6</div>
+                            <div class="kpi-change">+12% vs ontem</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-card-header">
+                                <span class="kpi-card-label">Faturamento do Mês</span>
+                                <div class="kpi-icon azul"><i class="fa-solid fa-wallet"></i></div>
+                            </div>
+                            <div class="kpi-value">R$ 12.840</div>
+                            <div class="kpi-change">+18% vs mês ant.</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-card-header">
+                                <span class="kpi-card-label">Clientes Atendidos</span>
+                                <div class="kpi-icon roxo"><i class="fa-solid fa-users"></i></div>
+                            </div>
+                            <div class="kpi-value">142</div>
+                            <div class="kpi-change">+8% este mês</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-card-header">
+                                <span class="kpi-card-label">Taxa de Ocupação</span>
+                                <div class="kpi-icon verde-escuro"><i class="fa-solid fa-percent"></i></div>
+                            </div>
+                            <div class="kpi-value">86%</div>
+                            <div class="kpi-change">Excelente</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aba Agendamentos -->
+                <div class="adm-tab" id="tab-agendamentos">
+                    <div class="adm-section-title">Lista de Agendamentos Realizados</div>
+                    <div style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #f1f5f9;">
+                        <p style="color: var(--texto-claro); font-size: 0.9rem;">Nenhum agendamento pendente no momento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE FUNCIONALIDADES -->
+    <script>
+        // Número de telefone configurado
+        const NUMERO_WHATSAPP = "5545999867857";
+
+        // Slider de Depoimentos
+        let depAtual = 0;
+        const depCards = document.querySelectorAll('.dep-card');
+        const depDots = document.querySelectorAll('.dep-dot');
+
+        function mostrarDepoimento(index) {
+            depCards.forEach(c => c.classList.remove('active'));
+            depDots.forEach(d => d.classList.remove('active'));
+            depAtual = (index + depCards.length) % depCards.length;
+            depCards[depAtual].classList.add('active');
+            depDots[depAtual].classList.add('active');
+        }
+        function mudarDepoimento(direcao) { mostrarDepoimento(depAtual + direcao); }
+        function irParaDepoimento(index) { mostrarDepoimento(index); }
+        setInterval(() => { mudarDepoimento(1); }, 6000);
+
+        // Contato via site
+        function enviarContatoSite(e) {
+            e.preventDefault();
+            const nome = document.getElementById('contatoNome').value;
+            const email = document.getElementById('contatoEmail').value;
+            const msg = document.getElementById('contatoMsg').value;
+            const texto = `Olá! Meu nome é ${nome} (${email}). Mensagem do site: ${msg}`;
+            window.open(`https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${encodeURIComponent(texto)}`, '_blank');
+        }
+
+        // Modal de Agendamento & Etapas
+        let etapaAtual = 1;
+        const totalEtapas = 4;
+
+        function abrirModalAgendamento() {
+            document.getElementById('modalAgendamento').classList.add('active');
+            irParaEtapa(1);
+            atualizarResumoPreco();
+        }
+        function fecharModalAgendamento() {
+            document.getElementById('modalAgendamento').classList.remove('active');
+        }
+
+        function selecionarServicoCard(nomeServico, preco) {
+            const radios = document.querySelectorAll('input[name="servico"]');
+            radios.forEach(r => {
+                if(r.value === nomeServico) r.checked = true;
+            });
+            atualizarResumoPreco();
+            abrirModalAgendamento();
+        }
+
+        function atualizarResumoPreco() {
+            let precoBase = 150;
+            const radioServico = document.querySelector('input[name="servico"]:checked');
+            if(radioServico) precoBase = parseFloat(radioServico.dataset.preco);
+
+            let adicionaisTotal = 0;
+            const checkboxes = document.querySelectorAll('input[name="adicional"]:checked');
+            checkboxes.forEach(chk => {
+                adicionaisTotal += parseFloat(chk.dataset.preco);
+            });
+
+            const total = precoBase + adicionaisTotal;
+            document.getElementById('inputTotalEstimado').value = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        function mudarEtapa(direcao) {
+            if(direcao === 1 && !validarEtapaAtual()) return;
+            etapaAtual += direcao;
+            if(etapaAtual < 1) etapaAtual = 1;
+            if(etapaAtual > totalEtapas) etapaAtual = totalEtapas;
+            irParaEtapa(etapaAtual);
+        }
+
+        function irParaEtapa(etapa) {
+            etapaAtual = etapa;
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step${etapaAtual}`).classList.add('active');
+
+            // Barra de progresso
+            const progressoPct = (etapaAtual / totalEtapas) * 100;
+            document.getElementById('progressBar').style.width = `${progressoPct}%`;
+            document.getElementById('progressText').textContent = `Etapa ${etapaAtual} de ${totalEtapas}`;
+
+            // Botões
+            const btnAnterior = document.getElementById('btnAnterior');
+            const btnProximo = document.getElementById('btnProximo');
+            const footerBtns = document.getElementById('modalFooterBtns');
+
+            if(etapaAtual === 1) {
+                btnAnterior.style.display = 'none';
+                btnProximo.style.display = 'inline-block';
+                btnProximo.textContent = 'Próximo';
+            } else if(etapaAtual === 2) {
+                btnAnterior.style.display = 'inline-block';
+                btnProximo.style.display = 'inline-block';
+                btnProximo.textContent = 'Próximo';
+                renderizarCalendario();
+            } else if(etapaAtual === 3) {
+                btnAnterior.style.display = 'inline-block';
+                btnProximo.style.display = 'inline-block';
+                btnProximo.textContent = 'Revisar Agendamento';
+            } else if(etapaAtual === 4) {
+                footerBtns.style.display = 'none';
+                preencherRevisao();
+                executarEnvioFinalWatts();
+            }
+        }
+
+        function validarEtapaAtual() {
+            if(etapaAtual === 2) {
+                if(!dataSelecionada || !horaSelecionada) {
+                    document.getElementById('calErrorMsg').style.display = 'block';
+                    return false;
+                }
+                document.getElementById('calErrorMsg').style.display = 'none';
+            }
+            if(etapaAtual === 3) {
+                let valido = true;
+                const nome = document.getElementById('clienteNome').value.trim();
+                const email = document.getElementById('clienteEmail').value.trim();
+                const tel = document.getElementById('clienteTel').value.trim();
+                const termos = document.getElementById('checkTermos').checked;
+
+                if(!nome) { document.getElementById('errNome').style.display = 'block'; valido = false; }
+                else { document.getElementById('errNome').style.display = 'none'; }
+
+                if(!email || !email.includes('@')) { document.getElementById('errEmail').style.display = 'block'; valido = false; }
+                else { document.getElementById('errEmail').style.display = 'none'; }
+
+                if(!tel) { document.getElementById('errTel').style.display = 'block'; valido = false; }
+                else { document.getElementById('errTel').style.display = 'none'; }
+
+                if(!termos) { document.getElementById('errTermos').style.display = 'block'; valido = false; }
+                else { document.getElementById('errTermos').style.display = 'none'; }
+
+                return valido;
+            }
+            return true;
+        }
+
+        // Calendário e Horários Dinâmicos com dias/horários indisponíveis aleatórios
+        let dataAtualCal = new Date();
+        let dataSelecionada = null;
+        let horaSelecionada = null;
+
+        function renderizarCalendario() {
+            const ano = dataAtualCal.getFullYear();
+            const mes = dataAtualCal.getMonth();
+            const mesesNomes = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+            
+            document.getElementById('calMonthYear').textContent = `${mesesNomes[mes]} ${ano}`;
+
+            const primeiroDiaIndex = new Date(ano, mes, 1).getDay();
+            const ultimoDiaMes = new Date(ano, mes + 1, 0).getDate();
+            const gridDays = document.getElementById('calDaysGrid');
+            gridDays.innerHTML = '';
+
+            // Espaços vazios iniciais
+            for(let i = 0; i < primeiroDiaIndex; i++) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.classList.add('cal-day', 'cal-empty');
+                gridDays.appendChild(emptyDiv);
+            }
+
+            const hoje = new Date();
+            hoje.setHours(0,0,0,0);
+
+            for(let dia = 1; dia <= ultimoDiaMes; dia++) {
+                const diaDiv = document.createElement('div');
+                diaDiv.classList.add('cal-day');
+                diaDiv.textContent = dia;
+
+                const dataCorrente = new Date(ano, mes, dia);
+
+                if(dataCorrente < hoje) {
+                    diaDiv.classList.add('cal-past');
+                } else {
+                    // Deixando dias aleatoriamente indisponíveis/ocupados
+                    if((dia % 5 === 0) || (dia % 11 === 0)) {
+                        diaDiv.classList.add('cal-past');
+                        diaDiv.title = "Dia lotado / indisponível";
+                    } else {
+                        if(dia % 3 === 0) diaDiv.classList.add('cal-has-events');
+                        
+                        diaDiv.addEventListener('click', () => {
+                            document.querySelectorAll('.cal-day').forEach(d => d.classList.remove('cal-selected'));
+                            diaDiv.classList.add('cal-selected');
+                            dataSelecionada = `${dia < 10 ? '0'+dia : dia}/${(mes+1) < 10 ? '0'+(mes+1) : (mes+1)}/${ano}`;
+                            renderizarHorarios(dia);
+                        });
+                    }
+                }
+                gridDays.appendChild(diaDiv);
+            }
+        }
+
+        function mudarMes(direcao) {
+            dataAtualCal.setMonth(dataAtualCal.getMonth() + direcao);
+            renderizarCalendario();
+        }
+
+        function renderizarHorarios(diaNum) {
+            const container = document.getElementById('horariosContainer');
+            const label = document.getElementById('horariosLabel');
+            label.innerHTML = `Horários para <span>${dataSelecionada}</span>`;
+            
+            const horariosFixos = ["09:00", "10:30", "13:00", "14:30", "16:00", "17:30"];
+            
+            let html = '<div class="horarios-grid">';
+            horariosFixos.forEach((hora, idx) => {
+                // Deixando horários aleatoriamente indisponíveis
+                const ocupado = (diaNum + idx) % 4 === 0;
+                if(ocupado) {
+                    html += `<div class="horario-slot ocupado">${hora}</div>`;
+                } else {
+                    html += `<div class="horario-slot" onclick="selecionarHorario(this, '${hora}')">${hora}</div>`;
+                }
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function selecionarHorario(elemento, hora) {
+            document.querySelectorAll('.horario-slot').forEach(s => s.classList.remove('selecionado'));
+            elemento.classList.add('selecionado');
+            horaSelecionada = hora;
+
+            document.getElementById('spanDataEscolhida').textContent = dataSelecionada;
+            document.getElementById('spanHoraEscolhida').textContent = horaSelecionada;
+            document.getElementById('agendamentoSelecionadoBox').style.display = 'flex';
+            document.getElementById('calErrorMsg').style.display = 'none';
+        }
+
+        function preencherRevisao() {
+            const servico = document.querySelector('input[name="servico"]:checked').value;
+            const total = document.getElementById('inputTotalEstimado').value;
+            const nome = document.getElementById('clienteNome').value;
+            const email = document.getElementById('clienteEmail').value;
+            const tel = document.getElementById('clienteTel').value;
+
+            document.getElementById('revServico').textContent = servico;
+            document.getElementById('revTotal').textContent = total;
+            document.getElementById('revDataHora').textContent = `${dataSelecionada} às ${horaSelecionada}`;
+            document.getElementById('revCliente').textContent = nome;
+            document.getElementById('revContato').textContent = `${tel} (${email})`;
+        }
+
+        function executarEnvioFinalWatts() {
+            document.getElementById('loadingState').style.display = 'block';
+            
+            setTimeout(() => {
+                document.getElementById('loadingState').style.display = 'none';
+                document.getElementById('successState').style.display = 'block';
+
+                // Formulando a mensagem pronta para o WhatsApp
+                const servico = document.querySelector('input[name="servico"]:checked').value;
+                const total = document.getElementById('inputTotalEstimado').value;
+                const nome = document.getElementById('clienteNome').value;
+                const tel = document.getElementById('clienteTel').value;
+
+                let mensagemWatts = `Olá! Gostaria de confirmar meu agendamento no Essência Relax Spa.\n\n`;
+                mensagemWatts += `*Cliente:* ${nome}\n`;
+                mensagemWatts += `*Telefone:* ${tel}\n`;
+                mensagemWatts += `*Serviço:* ${servico}\n`;
+                mensagemWatts += `*Data:* ${dataSelecionada}\n`;
+                mensagemWatts += `*Horário:* ${horaSelecionada}\n`;
+                mensagemWatts += `*Valor Estimado:* ${total}\n\n`;
+                mensagemWatts += `Aguardo a confirmação. Obrigado(a)!`;
+
+                const urlWatts = `https://api.whatsapp.com/send?phone=${NUMERO_WHATSAPP}&text=${encodeURIComponent(mensagemWatts)}`;
+
+                setTimeout(() => {
+                    window.open(urlWatts, '_blank');
+                }, 2000);
+
+            }, 2500);
+        }
+
+        // Admin painel
+        function abrirAdmin() {
+            document.getElementById('adminOverlay').classList.add('active');
+        }
+        function fecharAdmin() {
+            document.getElementById('adminOverlay').classList.remove('active');
+        }
+        function trocarAbaAdmin(abaId, btnElement) {
+            document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.adm-nav-item').forEach(i => i.classList.remove('active'));
+            document.getElementById(`tab-${abaId}`).classList.add('active');
+            btnElement.classList.add('active');
+        }
+    </script>
+</body>
+</html>
